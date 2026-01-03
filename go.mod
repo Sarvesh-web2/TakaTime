@@ -2,10 +2,15 @@ module github.com/Rtarun3606k/TakaTime
 
 go 1.25.3
 
-require go.mongodb.org/mongo-driver/v2 v2.4.1
+require (
+	github.com/google/go-github/v57 v57.0.0
+	go.mongodb.org/mongo-driver/v2 v2.4.1
+	golang.org/x/oauth2 v0.34.0
+)
 
 require (
 	github.com/golang/snappy v1.0.0 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect

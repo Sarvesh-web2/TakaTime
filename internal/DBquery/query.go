@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/Rtarun3606k/TakaTime/internal/types"
@@ -105,38 +106,42 @@ func formatDuration(seconds float64) string {
 }
 
 // --- MODULE 5: GENERATE REPORT (The Output) ---
-func GenerateReport(logs []types.LogEntry) {
+func GenerateReport(logs []types.LogEntry) string {
+	var result strings.Builder
 	totalSeconds := GetTotalDuration(logs)
 	langStats := GetLanguageStats(logs, totalSeconds)
 	projStats := GetProjectStats(logs, totalSeconds)
 
-	fmt.Printf("\n📊 TakaTime Report (Last 24h)\n")
-	fmt.Println("========================================")
-	fmt.Printf("⏱️  Total Coding Time: %s\n", formatDuration(totalSeconds))
-	fmt.Println("----------------------------------------")
+	result.WriteString("\n📊 TakaTime Report (Last 24h)\n")
+	result.WriteString("========================================")
+	result.WriteString(fmt.Sprintf("⏱️  Total Coding Time: %s\n", formatDuration(totalSeconds)))
+	result.WriteString("----------------------------------------")
 
-	fmt.Println("\n📂 Projects:")
+	result.WriteString("\n📂 Projects:")
 	for _, item := range projStats {
 		bar := generateProgressBar(item.Percentage)
-		fmt.Printf(" %-15s %6s  %-6.1f%% %s\n",
+		line := fmt.Sprintf(" %-15s %6s  %-6.1f%% %s\n",
 			item.Name,
 			formatDuration(item.Duration),
 			item.Percentage,
 			bar,
 		)
+		result.WriteString(line)
 	}
 
-	fmt.Println("\n💻 Languages:")
+	result.WriteString("\n💻 Languages:")
 	for _, item := range langStats {
 		bar := generateProgressBar(item.Percentage)
-		fmt.Printf(" %-15s %6s  %-6.1f%% %s\n",
+		line := fmt.Sprintf(" %-15s %6s  %-6.1f%% %s\n",
 			item.Name,
 			formatDuration(item.Duration),
 			item.Percentage,
 			bar,
 		)
+		result.WriteString(line)
 	}
-	fmt.Println("========================================")
+	result.WriteString("========================================")
+	return result.String()
 }
 
 // Optional: Cool ASCII Progress Bar
