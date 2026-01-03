@@ -1,0 +1,26 @@
+name: Build Linux Binary
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Build Linux Binary
+      run: |
+        # Build specifically for Linux AMD64
+        env GOOS=linux GOARCH=amd64 go build -o taka-cli-linux-amd64 cmd/main.go
+
+    - name: Upload to Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: taka-cli-linux-amd64
