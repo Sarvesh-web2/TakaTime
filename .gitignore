@@ -12,3 +12,6 @@ taka-cli
 
 # Ignore Mac system files
 .DS_Store
+taka-report
+taka-upload
+nvim_logs.txt

@@ -1,4 +1,4 @@
-module cmdForTakatime
+module github.com/Rtarun3606k/TakaTime
 
 go 1.25.3
 
