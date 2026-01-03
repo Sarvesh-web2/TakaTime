@@ -1,0 +1,14 @@
+# .gitignore
+
+# Ignore compiled binaries
+cmd/taka-cli
+taka-cli
+*.exe
+*.dll
+*.dylib
+
+# Ignore logs
+*.log
+
+# Ignore Mac system files
+.DS_Store

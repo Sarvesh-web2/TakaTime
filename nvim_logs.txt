@@ -1,0 +1,88 @@
+
+The `require('lspconfig')` "framework" is deprecated, use vim.lsp.config (see :help lspconfig-nvim-0.11) instead.
+Feature will be removed in nvim-lspconfig v3.0.0
+stack traceback:
+	.../.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig.lua:81: in function '__index'
+	/home/dragoon/.config/nvim/lua/plugins/lsp-config.lua:24: in function 'config'
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:380: in function <...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:378>
+	[C]: in function 'xpcall'
+	.../.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/util.lua:135: in function 'try'
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:395: in function 'config'
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:362: in function '_load'
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:197: in function 'load'
+	...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:127: in function 'startup'
+	...agoon/.local/share/nvim/lazy/lazy.nvim/lua/lazy/init.lua:112: in function 'setup'
+	/home/dragoon/.config/nvim/init.lua:24: in main chunk
+[null-ls] failed to load builtin rustfmt for method formatting; please check your config
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 1L, 14B written
+[null-ls] failed to run generator: ....local/share/nvim/lazy/none-ls.nvim/lua/null-ls/loop.lua:165: command stylua is not executable (make sure it's installed and on your $PATH)
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 2L, 14B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 6L, 64B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 12L, 83B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 14L, 108B written
+1 change; before #23  2 seconds ago
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 11L, 105B written
+vim.tbl_islist is deprecated. Run ":checkhealth vim.deprecated" for more information
+local-lua-debugger-vscode was successfully installed.
+luacheck failed to install.
+ast-grep was successfully installed.
+luaformatter failed to install.
+stylua was successfully installed.
+E382: Cannot write, 'buftype' option is set
+E382: Cannot write, 'buftype' option is set
+E382: Cannot write, 'buftype' option is set
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 11L, 105B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 15L, 129B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 12L, 161B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 16L, 235B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 16L, 235B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 17L, 271B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 19L, 273B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 20L, 303B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 24L, 339B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 23L, 334B written
+11 more lines
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 38L, 842B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 38L, 840B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 39L, 789B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 39L, 798B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 39L, 798B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 39L, 797B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 39L, 797B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 65L, 1613B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+# Config Change Detected. Reloading...
+
+- **added**: `~/.config/nvim/lua/plugins/takatime.lua`
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+# Config Change Detected. Reloading...
+
+- **changed**: `~/.config/nvim/lua/plugins/takatime.lua`
+# Config Change Detected. Reloading...
+
+- **changed**: `~/.config/nvim/lua/plugins/takatime.lua`
+# Config Change Detected. Reloading...
+
+- **changed**: `~/.config/nvim/lua/plugins/takatime.lua`
+# Config Change Detected. Reloading...
+
+- **changed**: `~/.config/nvim/lua/plugins/takatime.lua`
+# Config Change Detected. Reloading...
+
+- **changed**: `~/.config/nvim/lua/plugins/takatime.lua`
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+63 lines yanked
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1551B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1615B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1618B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1484B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1484B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 63L, 1486B written
+58 more lines
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 61L, 1537B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 61L, 1422B written
+"~/coding/taka-time.nvim/lua/taka-time/init.lua" 61L, 1358B written
