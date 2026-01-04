@@ -35,7 +35,8 @@ return {
   end,
 }
 ```
-⚙️ Setup Guide
+----
+## ⚙️ Setup Guide
 Step 1: Get a Database
 
 You need a MongoDB connection string. You have two free options:
@@ -62,7 +63,9 @@ Vim Script
 ```
 If it says "✅ TakaTime is configured and running," you are good to go!
 
-📊 How to Add Stats to Your GitHub Profile
+----
+
+## 📊 How to Add Stats to Your GitHub Profile
 
 TakaTime comes with a report generator that works with GitHub Actions to update your Profile README automatically.
 1. Prepare your Profile Repo
@@ -75,7 +78,14 @@ TakaTime comes with a report generator that works with GitHub Actions to update 
 
     (Optional) Add ` GIST_TOKEN ` if you plan to use Gists (not required for direct README updates).
 
-2. Create the Workflow
+2. Add the Markers
+- Add start and end markers to your README.md 
+```md
+<!--takatime-start-->
+<!--takatime-end-->
+```
+
+3. Create the Workflow
 
 Create a file in your repo at .github/workflows/update-stats.yml and paste this content:
 ```yml
@@ -108,8 +118,10 @@ jobs:
 
 ```
 
-Note: This workflow downloads the taka-report tool and runs it against your database to generate stats.
-🛠️ Troubleshooting
+`Note:` This workflow downloads the taka-report tool and runs it against your database to generate stats.
+
+----
+## 🛠️ Troubleshooting
 
 "TakaTime is not configured"
 
@@ -130,8 +142,8 @@ Upload Failed / Syncing Forever
 
  For Changes Look for `CHANGELOG.md`
 
-
-⚠️ Disclaimer & Roadmap
+----
+## ⚠️ Disclaimer & Roadmap
 
 `Active Beta`: This project is currently in active development. We might introduce breaking changes in future updates as we refine the architecture. Use at your own risk.
 
@@ -141,8 +153,9 @@ Upload Failed / Syncing Forever
 
 New screenshots and visual updates will be added soon!
 
+----
 
-📄 License
+## 📄 License
 
 MIT License. See `LICENSE` for details.
 
