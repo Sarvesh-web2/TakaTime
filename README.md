@@ -157,7 +157,7 @@ jobs:
       - name: Generate Report & Update Profile
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
-          TARGET_REPO: "${{ github.repository }}" # Automatically targets this repo
+          TARGET_REPO: ${{ github.repository }} # Automatically targets this repo
         run: ./taka-report -days=7
 ```
 
