@@ -93,6 +93,38 @@ TakaTime comes with a report generator that works with GitHub Actions to update 
 
 ```md
 <!--takatime-start-->
+
+> [!NOTE]
+> **TakaTime Dashboard**
+> _Dec 29_ to _Jan 05_
+
+> [!TIP]
+> **Total Coding Time (7d):** 3h 17m
+
+#### 📈 Trends
+| Period        | Duration    | Period       | Duration    |
+| :---          | :---        | :---         | :---        |
+| Yesterday     | **3h 13m**  | Last 7 Days  | **3h 17m**  |
+| Last 30 Days  | **3h 17m**  | All Time     | **3h 17m**  |
+
+#### 💻 Languages
+| Language | Time | Percentage |
+| :--- | :--- | :--- |
+| **go** | 1h 42m | 🟦🟦🟦🟦🟦⬜⬜⬜⬜⬜ 51.9% |
+| **txt** | 41m | 🟦🟦⬜⬜⬜⬜⬜⬜⬜⬜ 20.8% |
+| **lua** | 32m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.6% |
+| **text** | 21m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 10.7% |
+| **Other** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.0% |
+
+#### 🔥 Projects
+| Project | Time | Percentage |
+| :--- | :--- | :--- |
+| **taka-time.nvim** | 2h 11m | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 66.6% |
+| **testTakaTime** | 41m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20.8% |
+| **nvim** | 24m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.5% |
+| **unknown** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.1% |
+
+
 <!--takatime-end-->
 ```
 
@@ -175,4 +207,36 @@ New screenshots and visual updates will be added soon!
 MIT License. See `LICENSE` for details.
 
 <!--takatime-start-->
+
+> [!NOTE]
+> **TakaTime Dashboard**
+> _Dec 29_ to _Jan 05_
+
+> [!TIP]
+> **Total Coding Time (7d):** 3h 17m
+
+#### 📈 Trends
+| Period        | Duration    | Period       | Duration    |
+| :---          | :---        | :---         | :---        |
+| Yesterday     | **3h 13m**  | Last 7 Days  | **3h 17m**  |
+| Last 30 Days  | **3h 17m**  | All Time     | **3h 17m**  |
+
+#### 💻 Languages
+| Language | Time | Percentage |
+| :--- | :--- | :--- |
+| **go** | 1h 42m | 🟦🟦🟦🟦🟦⬜⬜⬜⬜⬜ 51.9% |
+| **txt** | 41m | 🟦🟦⬜⬜⬜⬜⬜⬜⬜⬜ 20.8% |
+| **lua** | 32m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.6% |
+| **text** | 21m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 10.7% |
+| **Other** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.0% |
+
+#### 🔥 Projects
+| Project | Time | Percentage |
+| :--- | :--- | :--- |
+| **taka-time.nvim** | 2h 11m | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 66.6% |
+| **testTakaTime** | 41m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20.8% |
+| **nvim** | 24m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.5% |
+| **unknown** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.1% |
+
+
 <!--takatime-end-->
