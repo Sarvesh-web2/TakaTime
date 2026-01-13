@@ -128,31 +128,34 @@ TakaTime comes with a report generator that works with GitHub Actions to update 
 Create a file in your repo at .github/workflows/update-stats.yml and paste this content:
 
 ```yml
+
 name: Update TakaTime Stats
 
 on:
   schedule:
     - cron: "0 0 * * *" # Runs every midnight UTC
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch:      # Allows manual trigger
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # Needed to download releases
 
     steps:
       - name: Download Taka-Report Binary
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # Downloads the latest stable binary
           gh release download --repo Rtarun3606k/TakaTime --pattern "taka-report-linux-amd64" --output taka-report
           chmod +x taka-report
 
       - name: Generate Report & Update Profile
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
-          TARGET_REPO: ${{ github.repository }} # Automatically targets this repo
+          GIST_TOKEN: ${{ github.token }}
+          TARGET_REPO: ${{ github.repository }}
         run: ./taka-report -days=7
 ```
 
