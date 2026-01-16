@@ -1,10 +1,9 @@
 const vscode = require("vscode");
-const statusHelper = require("./Plugin/StatusBarUpdate");
-const env = require("./Plugin/Config");
-const downloader = require("./Plugin/BinaryDownload"); // Import the new file
-const fs = require("fs");
 const path = require("path");
-const os = require("os");
+const statusHelper = require("./Plugin/StatusBarUpdate");
+const setupHelper = require("./Plugin/Setup");
+// 👇 CHANGE THIS IMPORT
+const heartbeat = require("./Plugin/HeartBeat");
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -12,6 +11,7 @@ const os = require("os");
 async function activate(context) {
   console.log("TakaTime: Initializing...");
 
+  // 1. Status Bar
   const statusBar = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Left,
     100
@@ -21,64 +21,25 @@ async function activate(context) {
   statusBar.show();
   context.subscriptions.push(statusBar);
 
-  // --- SMART SETUP COMMAND ---
-  const setupCommand = vscode.commands.registerCommand(
-    "takatime.setup",
-    async () => {
-      const config = env.getConfig();
-
-      // CASE 1: Config/URI is missing -> Ask for it
-      if (!config || !config.MONGO_URI) {
-        const uri = await vscode.window.showInputBox({
-          placeHolder: "mongodb+srv://admin:password@...",
-          prompt: "Enter your MongoDB Connection String",
-          ignoreFocusOut: true,
-          password: true,
-        });
-
-        if (!uri) return;
-
-        // Save Config Logic (Same as before)
-        const homeDir = os.homedir();
-        const configPath = path.join(homeDir, ".takatime.json");
-        let newConfig = config || { VERSION: env.CURRENT_VERSION };
-        newConfig.MONGO_URI = uri;
-        if (!newConfig.VERSION) newConfig.VERSION = env.CURRENT_VERSION;
-
-        try {
-          fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 4));
-          vscode.window.showInformationMessage("Configuration Saved!");
-          // Check status again (will likely prompt for download next click)
-          statusHelper.checkStatus(statusBar);
-        } catch (e) {
-          vscode.window.showErrorMessage("Failed to save config");
-        }
-        return;
-      }
-
-      // CASE 2: Binary is Missing -> Download it
-      const isBinaryReady = env.checkBinary(env.CURRENT_VERSION);
-      if (!isBinaryReady) {
-        try {
-          const success = await downloader.downloadBinary(env.CURRENT_VERSION);
-          if (success) {
-            vscode.window.showInformationMessage(
-              `TakaTime ${env.CURRENT_VERSION} installed successfully! `
-            );
-            statusHelper.checkStatus(statusBar); // Should turn Green now
-          }
-        } catch (err) {
-          vscode.window.showErrorMessage(`Download Failed: ${err.message}`);
-        }
-        return;
-      }
-
-      // CASE 3: Everything is good
-      vscode.window.showInformationMessage("TakaTime is active and running! ");
-    }
-  );
-
+  // 2. Setup Command
+  const setupCommand = vscode.commands.registerCommand("takatime.setup", () => {
+    setupHelper.runSetup(statusBar);
+  });
   context.subscriptions.push(setupCommand);
+
+  // 3. ⚡ SAVE LISTENER (Now with Heartbeat Logic!)
+  const saveListener = vscode.workspace.onDidSaveTextDocument((document) => {
+    // Filter out junk
+    if (document.uri.scheme !== "file") return;
+    if (document.fileName.includes(path.sep + ".git" + path.sep)) return;
+
+    // 👇 CALL THE HEARTBEAT MANAGER
+    heartbeat.handleHeartbeat(document);
+  });
+
+  context.subscriptions.push(saveListener);
+
+  // 4. Initial Check
   statusHelper.checkStatus(statusBar);
 }
 

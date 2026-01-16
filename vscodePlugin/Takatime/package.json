@@ -16,10 +16,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "Takatime.helloWorld",
-        "title": "Hello World"
-      },
-      {
         "command": "takatime.setup",
         "title": "TakaTime: Setup MongoDB URI"
       }

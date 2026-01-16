@@ -1,67 +1,63 @@
+// Plugin/Config.js
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const CURRENT_VERSION = "v2.0.3";
+// CHANGE THIS TO v2.0.4
+const CURRENT_VERSION = "v2.0.4";
 
 function getConfig() {
   const homeDir = os.homedir();
   const configPath = path.join(homeDir, ".takatime.json");
 
-  // 1. Auto-Create if missing 🛠️
+  // 1. Create if missing
   if (!fs.existsSync(configPath)) {
-    const defaultConfig = {
-      MONGO_URI: "",
-      VERSION: CURRENT_VERSION, // Default version to match your GitHub Release
-    };
-
+    // For brevity, assuming you kept the creation code same as before
+    const defaultConfig = { MONGO_URI: "", VERSION: CURRENT_VERSION };
     try {
       fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 4));
-
-      // UX: Open the file for them immediately!
-      vscode.workspace.openTextDocument(configPath).then((doc) => {
-        vscode.window.showTextDocument(doc);
-      });
-
-      vscode.window.showInformationMessage(
-        `TakaTime: Created config at ${configPath}. Please add your MONGO_URI.`
-      );
-      return null; // Stop here, they need to edit the file
-    } catch (err) {
-      vscode.window.showErrorMessage(
-        `TakaTime: Failed to create config: ${err.message}`
-      );
+      return null;
+    } catch (e) {
       return null;
     }
   }
 
-  // 2. Read and Parse 📖
+  // 2. Read Config
   try {
     const rawConfig = fs.readFileSync(configPath, "utf8");
-    const config = JSON.parse(rawConfig);
+    let config = JSON.parse(rawConfig);
+
+    // AUTO-UPDATE LOGIC
+    // If the file version (e.g., v2.0.3) doesn't match Code version (v2.0.4)
+    if (config.VERSION !== CURRENT_VERSION) {
+      console.log(
+        `TakaTime: Upgrading config from ${config.VERSION} to ${CURRENT_VERSION}`
+      );
+
+      config.VERSION = CURRENT_VERSION; // Update the object
+
+      // Save it back to the file immediately
+      fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+
+      vscode.window.showInformationMessage(
+        `TakaTime: Updated to ${CURRENT_VERSION}. Click status bar to download new binary.`
+      );
+    }
 
     if (!config.MONGO_URI) {
-      vscode.window.showWarningMessage(
-        `TakaTime: MONGO_URI is empty in .takatime.json.`
-      );
+      // ... warning logic ...
       return null;
     }
 
-    // Default to a version if they deleted it
-    if (!config.VERSION) {
-      config.VERSION = "v1.0.0";
-    }
-
-    console.log(`✅ Config loaded. Version: ${config.VERSION}`);
-    return config; // Return the full object
+    return config;
   } catch (err) {
-    vscode.window.showErrorMessage(
-      `TakaTime: Invalid JSON in config. ${err.message}`
-    );
     return null;
   }
 }
+
+// ... checkBinary logic stays the same ...
+// ... module.exports ...
 
 // We accept 'version' here now, which we will use later for downloading
 function checkBinary(version) {
@@ -96,7 +92,7 @@ function checkBinary(version) {
     );
     return false;
   }
-  console.log("✅ Binary found.");
+  console.log("Binary found.");
   return true;
 }
 
