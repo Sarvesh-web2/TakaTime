@@ -1,10 +1,12 @@
 {
   "name": "takatime",
   "displayName": "Takatime",
-  "description": "",
+  "description": "A privacy-first, serverless time tracker.",
   "version": "0.0.1",
+  "license": "MIT",
+  "publisher": "Rtarun3606k",
   "engines": {
-    "vscode": "^1.107.0"
+    "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
@@ -27,7 +29,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.107.0",
+    "@types/vscode": "^1.80.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "eslint": "^9.39.1",

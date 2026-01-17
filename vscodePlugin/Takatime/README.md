@@ -1,65 +1,68 @@
-# Takatime README
+# ⏳ TakaTime (VS Code Edition)
 
-This is the README for your extension "Takatime". After writing up a brief description, we recommend including the following sections.
+**A privacy-first, serverless time tracker for your GitHub Profile.**
 
-## Features
+TakaTime is a lightweight alternative to WakaTime that requires **no monthly fees** and **no external servers**. It tracks your coding activity directly from VS Code and saves it to your own free MongoDB Atlas cluster.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+![Dashboard Preview](https://github.com/Rtarun3606k/TakaTime/blob/main/assets/dashboard-preview.png?raw=true)
 
-For example if there is an image subfolder under your extension project workspace:
+## 🚀 Features
 
-\!\[feature X\]\(images/feature-x.png\)
+- **Serverless:** No hosting required. Runs entirely via VS Code and GitHub Actions.
+- **Free Forever:** Uses the MongoDB Atlas free tier (512MB storage = years of data).
+- **Privacy-First:** You own your data. No third-party analytics.
+- **Auto-Sync:** Updates your GitHub Profile README with your latest stats.
+- **Language Tracking:** Automatically detects languages (Python, Go, JS, etc.) and projects.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## 📦 Installation
 
-## Requirements
+1.  Install this extension from the VS Code Marketplace.
+2.  Open VS Code. The extension will automatically check for the necessary binary.
+3.  If this is your first time, you will be prompted to enter your **MongoDB Connection String**.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## ⚙️ Setup Guide
 
-## Extension Settings
+### Step 1: Get a Database
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1.  Create a free account on [MongoDB Atlas](https://www.mongodb.com/atlas/database).
+2.  Create a new Cluster (Free Tier).
+3.  Go to **Database Access** -> Add a new user (keep the password safe!).
+4.  Go to **Network Access** -> Allow access from anywhere (`0.0.0.0/0`).
+5.  Click **Connect** -> **Drivers** -> Copy the connection string (e.g., `mongodb+srv://user:pass@cluster0...`).
 
-For example:
+### Step 2: Configure Extension
 
-This extension contributes the following settings:
+1.  Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac).
+2.  Run the command: `TakaTime: Setup MongoDB URI`.
+3.  Paste your connection string and hit Enter.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+**That's it!** TakaTime is now tracking your work. 🎉
 
-## Known Issues
+## 🔧 Commands
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- `TakaTime: Setup MongoDB URI`: Opens the configuration prompt to update your database connection or re-download the binary.
 
-## Release Notes
+## 📊 How to Display Stats on GitHub
 
-Users appreciate release notes as you update your extension.
+To show the graph on your GitHub profile, you need to set up the **Taka-Report** action in your profile repository.
 
-### 1.0.0
+1.  Go to your GitHub Profile repository (`username/username`).
+2.  Create a file: `.github/workflows/takatime.yml`.
+3.  Copy the workflow configuration from the [Official Repository](https://github.com/Rtarun3606k/TakaTime).
 
-Initial release of ...
+## 🛡️ Privacy Policy
 
-### 1.0.1
+**TakaTime does not send your data to any third-party servers.**
 
-Fixed issue #.
+- Your coding activity is sent **only** to the MongoDB URI you provide.
+- The extension downloads a helper binary from the official [TakaTime GitHub Releases](https://github.com/Rtarun3606k/TakaTime/releases).
+- No telemetry is collected by the extension author.
 
-### 1.1.0
+## 🔗 Links
 
-Added features X, Y, and Z.
+- [GitHub Repository](https://github.com/Rtarun3606k/TakaTime)
+- [Report an Issue](https://github.com/Rtarun3606k/TakaTime/issues)
 
 ---
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoying TakaTime?** ⭐ Star the [repo on GitHub](https://github.com/Rtarun3606k/TakaTime)!
