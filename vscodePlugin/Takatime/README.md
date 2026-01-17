@@ -4,7 +4,7 @@
 
 TakaTime is a lightweight alternative to WakaTime that requires **no monthly fees** and **no external servers**. It tracks your coding activity directly from VS Code and saves it to your own free MongoDB Atlas cluster.
 
-![Dashboard Preview](https://github.com/Rtarun3606k/TakaTime/blob/main/public/dashboard-preview.png?raw=true)
+![Dashboard Preview](https://github.com/Rtarun3606k/TakaTime/blob/main/public/dashboard-preview-vscode.png?raw=true)
 
 ## 🚀 Features
 
