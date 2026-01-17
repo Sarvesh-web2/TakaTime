@@ -22,6 +22,21 @@
 It works just like WakaTime, but with one major difference: **You own your data.**
 Instead of sending your coding activity to a third-party server, TakaTime stores everything in **your own MongoDB database**.
 
+---
+
+## 📖 Table of Contents
+- [✨ Features](#-features)
+- [📦 Installation](#-installation)
+  - [Using VS Code](#using-vs-code)
+  - [Using lazy.nvim](#using-lazynvim)
+- [⚙️ Setup Guide](#-setup-guide)
+- [📊 GitHub Profile Stats](#-how-to-add-stats-to-your-github-profile)
+- [🛠️ Troubleshooting](#-troubleshooting)
+- [⚠️ Disclaimer & Roadmap](#-disclaimer--roadmap)
+- [📄 License](#-license)
+
+---
+
 ## ✨ Features
 
 - 🚀 **Zero Latency:** Written in Go. Uploads happen asynchronously in the background so it never blocks your typing.
@@ -34,10 +49,11 @@ Instead of sending your coding activity to a third-party server, TakaTime stores
 
 ## 📦 Installation
 
-### using VS Code 
+### Using VS Code 
 
-<video src="https://github.com/user-attachments/assets/a3c492d8-898c-497a-bc0c-c2f8ebc5d03b"  loop mute alt="Video tutorial to install in vscode" />
+https://github.com/user-attachments/assets/a3c492d8-898c-497a-bc0c-c2f8ebc5d03b
 
+---
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
