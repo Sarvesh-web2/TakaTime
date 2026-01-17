@@ -2,7 +2,7 @@
   "name": "takatime",
   "displayName": "Takatime",
   "description": "A privacy-first, serverless time tracker.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "publisher": "Rtarun3606k",
   "icon": "public/TakatimeLogo.png",
