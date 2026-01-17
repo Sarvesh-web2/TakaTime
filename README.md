@@ -1,4 +1,19 @@
-# ⏳ TakaTime.nvim
+<div align="center">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr border="0">
+      <td valign="middle" align="center" border="0">
+        <img width="200" alt="TakatimeLogo" src="https://github.com/user-attachments/assets/09cf911b-5246-4b13-99e7-7f435a6cde3a" />
+      </td>
+      <td valign="middle" border="0">
+        <h1>TakaTime.nvim</h1>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p align="center">
+  <img src="https://github.com/Rtarun3606k/TakaTime/blob/main/public/dashboard-preview-vscode.png" alt="TakaTime Banner" width="100%">
+</p>
 
 > "Time is what we want most, but what we use worst."
 
@@ -18,6 +33,11 @@ Instead of sending your coding activity to a third-party server, TakaTime stores
 ---
 
 ## 📦 Installation
+
+### using VS Code 
+
+<video src="https://github.com/user-attachments/assets/a3c492d8-898c-497a-bc0c-c2f8ebc5d03b"  loop mute alt="Video tutorial to install in vscode" />
+
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
