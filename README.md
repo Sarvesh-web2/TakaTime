@@ -45,6 +45,26 @@ Instead of sending your coding activity to a third-party server, TakaTime stores
 - 📊 **GitHub Profile Stats:** Includes a CLI tool to generate beautiful charts for your GitHub Profile README.
 - 📂 **Smart Tracking:** Tracks Projects, Languages, and Files automatically.
 
+## 🏗️ How it Works
+
+
+<div align="center">
+  <table border="0">
+    <tr>
+      <th align="center">High-Level Architecture</th>
+      <th align="center">Zero-Latency Flow</th>
+    </tr>
+    <tr>
+      <td width="50%" valign="top">
+        <img src="https://github.com/user-attachments/assets/edee6d78-034e-4f95-a0e0-4a1616180f1d" alt="Sequence Diagram" width="100%">
+      </td>
+      <td width="50%" valign="top">
+        <img src="https://github.com/user-attachments/assets/37420b31-e5e4-4ff0-a823-84261db1c5a6" alt="High Level Architecture Diagram" width="100%">
+      </td>
+    </tr>
+  </table>
+</div>
+
 ---
 
 ## 📦 Installation
@@ -80,7 +100,7 @@ return {
 
 ---
 
-## ⚙️ Setup Guide
+##  Setup Guide
 
 Step 1: Get a Database
 
