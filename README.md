@@ -159,34 +159,34 @@ TakaTime comes with a report generator that works with GitHub Actions to update 
 
 > [!NOTE]
 > **TakaTime Dashboard**
-> _Jan 17_ to _Jan 24_
+> _Jan 18_ to _Jan 25_
 
 > [!TIP]
-> **Total Coding Time (7d):** 6h 48m
+> **Total Coding Time (7d):** 6h 30m
 
 #### 📈 Trends
 | Period        | Duration    | Period       | Duration    |
 | :---          | :---        | :---         | :---        |
-| Yesterday     | **20m**     | Last 7 Days  | **6h 48m**  |
+| Yesterday     | **0m**      | Last 7 Days  | **6h 30m**  |
 | Last 30 Days  | **11h 7m**  | All Time     | **11h 7m**  |
 
 #### 💻 Languages
 | Language | Time | Percentage |
 | :--- | :--- | :--- |
-| **go** | 4h 11m | 🟦🟦🟦🟦🟦🟦⬜⬜⬜⬜ 61.5% |
-| **lua** | 1h 6m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.2% |
-| **html** | 31m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.6% |
-| **plaintext** | 28m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 6.9% |
-| **Other** | 32m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.8% |
+| **go** | 4h 7m | 🟦🟦🟦🟦🟦🟦⬜⬜⬜⬜ 63.3% |
+| **lua** | 1h 6m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.9% |
+| **html** | 31m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.9% |
+| **plaintext** | 28m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.2% |
+| **Other** | 18m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 4.6% |
 
 #### 🔥 Projects
 | Project | Time | Percentage |
 | :--- | :--- | :--- |
-| **taka-time.nvim** | 3h 3m | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 44.9% |
-| **testTakaTime** | 1h 9m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.9% |
-| **plugins** | 1h 5m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.9% |
-| **cd** | 46m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.3% |
-| **Other** | 45m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.0% |
+| **taka-time.nvim** | 3h 3m | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 46.9% |
+| **plugins** | 1h 5m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.7% |
+| **testTakaTime** | 1h 5m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.7% |
+| **cd** | 46m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.8% |
+| **Other** | 31m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.9% |
 
 
 <!--takatime-end-->
@@ -277,34 +277,34 @@ MIT License. See `LICENSE` for details.
 
 > [!NOTE]
 > **TakaTime Dashboard**
-> _Jan 17_ to _Jan 24_
+> _Jan 18_ to _Jan 25_
 
 > [!TIP]
-> **Total Coding Time (7d):** 6h 48m
+> **Total Coding Time (7d):** 6h 30m
 
 #### 📈 Trends
 | Period        | Duration    | Period       | Duration    |
 | :---          | :---        | :---         | :---        |
-| Yesterday     | **20m**     | Last 7 Days  | **6h 48m**  |
+| Yesterday     | **0m**      | Last 7 Days  | **6h 30m**  |
 | Last 30 Days  | **11h 7m**  | All Time     | **11h 7m**  |
 
 #### 💻 Languages
 | Language | Time | Percentage |
 | :--- | :--- | :--- |
-| **go** | 4h 11m | 🟦🟦🟦🟦🟦🟦⬜⬜⬜⬜ 61.5% |
-| **lua** | 1h 6m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.2% |
-| **html** | 31m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.6% |
-| **plaintext** | 28m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 6.9% |
-| **Other** | 32m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.8% |
+| **go** | 4h 7m | 🟦🟦🟦🟦🟦🟦⬜⬜⬜⬜ 63.3% |
+| **lua** | 1h 6m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.9% |
+| **html** | 31m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.9% |
+| **plaintext** | 28m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.2% |
+| **Other** | 18m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 4.6% |
 
 #### 🔥 Projects
 | Project | Time | Percentage |
 | :--- | :--- | :--- |
-| **taka-time.nvim** | 3h 3m | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 44.9% |
-| **testTakaTime** | 1h 9m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.9% |
-| **plugins** | 1h 5m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.9% |
-| **cd** | 46m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.3% |
-| **Other** | 45m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.0% |
+| **taka-time.nvim** | 3h 3m | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 46.9% |
+| **plugins** | 1h 5m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.7% |
+| **testTakaTime** | 1h 5m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.7% |
+| **cd** | 46m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.8% |
+| **Other** | 31m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.9% |
 
 
 <!--takatime-end-->
