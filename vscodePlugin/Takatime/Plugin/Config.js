@@ -5,7 +5,7 @@ const path = require("path");
 const os = require("os");
 
 // CHANGE THIS TO v2.0.4
-const CURRENT_VERSION = "v2.0.4";
+const CURRENT_VERSION = "v2.0.5";
 
 function getConfig() {
   const homeDir = os.homedir();
@@ -32,7 +32,7 @@ function getConfig() {
     // If the file version (e.g., v2.0.3) doesn't match Code version (v2.0.4)
     if (config.VERSION !== CURRENT_VERSION) {
       console.log(
-        `TakaTime: Upgrading config from ${config.VERSION} to ${CURRENT_VERSION}`
+        `TakaTime: Upgrading config from ${config.VERSION} to ${CURRENT_VERSION}`,
       );
 
       config.VERSION = CURRENT_VERSION; // Update the object
@@ -41,7 +41,7 @@ function getConfig() {
       fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
 
       vscode.window.showInformationMessage(
-        `TakaTime: Updated to ${CURRENT_VERSION}. Click status bar to download new binary.`
+        `TakaTime: Updated to ${CURRENT_VERSION}. Click status bar to download new binary.`,
       );
     }
 
@@ -71,7 +71,7 @@ function checkBinary(version) {
     binName = "taka-uploader.exe";
   } else {
     vscode.window.showErrorMessage(
-      `TakaTime: Unsupported platform: ${process.platform}`
+      `TakaTime: Unsupported platform: ${process.platform}`,
     );
     return false;
   }
@@ -88,7 +88,7 @@ function checkBinary(version) {
   if (!fs.existsSync(binaryPath)) {
     // We can now use the version in the warning!
     vscode.window.showWarningMessage(
-      `TakaTime: Binary ${version} missing. Auto-download needed.`
+      `TakaTime: Binary ${version} missing. Auto-download needed.`,
     );
     return false;
   }

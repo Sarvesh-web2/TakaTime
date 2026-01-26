@@ -9,6 +9,9 @@ type LogEntry struct {
 	Duration  float64   `bson:"duration"`
 	Date      string    `bson:"date"`
 	Language  string    `bson:"language"`
+	Os        string    `bson:"os"`
+	GitBranch string    `bson:"gitBranch"`
+	Editor    string    `bson:"editor"`
 }
 
 type StatItem struct {

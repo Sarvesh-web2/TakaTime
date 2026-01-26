@@ -43,6 +43,8 @@ local function attempt_upload()
 		file_path,
 		"-duration",
 		tostring(time_to_send),
+		"-editor",
+		"NeoVim",
 	}
 
 	if config.options.debug then

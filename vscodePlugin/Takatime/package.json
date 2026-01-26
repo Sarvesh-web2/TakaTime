@@ -1,8 +1,8 @@
 {
   "name": "takatime",
-  "displayName": "Takatime",
-  "description": "A privacy-first, serverless time tracker.",
-  "version": "0.0.2",
+  "displayName": "TakaTime - Privacy First Time Tracker",
+  "description": "A privacy-first, serverless time tracker. Track coding metrics, visualize productivity, and maintain full data ownership.",
+  "version": "0.0.3",
   "license": "MIT",
   "publisher": "Rtarun3606k",
   "icon": "public/TakatimeLogo.png",
@@ -10,7 +10,19 @@
     "vscode": "^1.80.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "time tracker",
+    "productivity",
+    "analytics",
+    "code stats",
+    "metrics",
+    "dashboard",
+    "time management",
+    "privacy",
+    "wakatime alternative"
   ],
   "activationEvents": [
     "onStartupFinished"
