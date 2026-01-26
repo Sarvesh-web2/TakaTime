@@ -7,7 +7,7 @@ M.defaults = {
 
 	ebounce_seconds = 2,
 
-	ebug = false,
+	debug = false,
 }
 
 M.options = {}
