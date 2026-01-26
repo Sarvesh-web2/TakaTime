@@ -1,11 +1,11 @@
 local M = {}
 
 M.defaults = {
-	inary_version = "v2.0.5",
+	binary_version = "v2.0.5",
 
-	ongo_uri = "",
+	mongo_uri = "",
 
-	ebounce_seconds = 2,
+	debounce_seconds = 2,
 
 	debug = false,
 }
@@ -13,7 +13,7 @@ M.defaults = {
 M.options = {}
 
 function M.setup(options)
-	.options = vim.tbl_deep_extend("force", M.defaults, options or {})
+	M.options = vim.tbl_deep_extend("force", M.defaults, options or {})
 end
 
 return M
