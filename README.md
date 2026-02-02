@@ -159,34 +159,34 @@ TakaTime comes with a report generator that works with GitHub Actions to update 
 
 > [!NOTE]
 > **TakaTime Dashboard**
-> _Jan 25_ to _Feb 01_
+> _Jan 26_ to _Feb 02_
 
 > [!TIP]
-> **Total Coding Time (7d):** 12h 7m
+> **Total Coding Time (7d):** 58h 0m
 
 #### 📈 Trends
-| Period        | Duration     | Period       | Duration     |
-| :---          | :---         | :---         | :---         |
-| Yesterday     | **0m**       | Last 7 Days  | **12h 7m**   |
-| Last 30 Days  | **23h 14m**  | All Time     | **23h 14m**  |
+| Period        | Duration    | Period       | Duration    |
+| :---          | :---        | :---         | :---        |
+| Yesterday     | **1h 18m**  | Last 7 Days  | **58h 0m**  |
+| Last 30 Days  | **69h 7m**  | All Time     | **69h 7m**  |
 
 #### 💻 Languages
 | Language | Time | Percentage |
 | :--- | :--- | :--- |
-| **go** | 6h 46m | 🟦🟦🟦🟦🟦⬜⬜⬜⬜⬜ 55.9% |
-| **lua** | 4h 32m | 🟦🟦🟦⬜⬜⬜⬜⬜⬜⬜ 37.5% |
-| **md** | 36m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 4.9% |
-| **text** | 5m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.8% |
-| **Other** | 7m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 1.0% |
+| **text** | 20h 31m | 🟦🟦🟦⬜⬜⬜⬜⬜⬜⬜ 35.4% |
+| **go** | 13h 45m | 🟦🟦⬜⬜⬜⬜⬜⬜⬜⬜ 23.7% |
+| **lua** | 8h 37m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 14.9% |
+| **py** | 5h 15m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9.1% |
+| **Other** | 9h 49m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.9% |
 
 #### 🔥 Projects
 | Project | Time | Percentage |
 | :--- | :--- | :--- |
-| **taka-time.nvim** | 8h 14m | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 68.0% |
-| **plugins** | 3h 45m | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 31.0% |
-| **Takatime** | 6m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.8% |
-| **vscodePlugin** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.1% |
-| **Other** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.1% |
+| **taka-time.nvim** | 15h 14m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 26.3% |
+| **unknown** | 11h 46m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20.3% |
+| **dragoon** | 8h 48m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.2% |
+| **markdownToHtml** | 4h 24m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.6% |
+| **Other** | 17h 46m | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30.6% |
 
 
 <!--takatime-end-->
@@ -277,34 +277,34 @@ MIT License. See `LICENSE` for details.
 
 > [!NOTE]
 > **TakaTime Dashboard**
-> _Jan 25_ to _Feb 01_
+> _Jan 26_ to _Feb 02_
 
 > [!TIP]
-> **Total Coding Time (7d):** 12h 7m
+> **Total Coding Time (7d):** 58h 0m
 
 #### 📈 Trends
-| Period        | Duration     | Period       | Duration     |
-| :---          | :---         | :---         | :---         |
-| Yesterday     | **0m**       | Last 7 Days  | **12h 7m**   |
-| Last 30 Days  | **23h 14m**  | All Time     | **23h 14m**  |
+| Period        | Duration    | Period       | Duration    |
+| :---          | :---        | :---         | :---        |
+| Yesterday     | **1h 18m**  | Last 7 Days  | **58h 0m**  |
+| Last 30 Days  | **69h 7m**  | All Time     | **69h 7m**  |
 
 #### 💻 Languages
 | Language | Time | Percentage |
 | :--- | :--- | :--- |
-| **go** | 6h 46m | 🟦🟦🟦🟦🟦⬜⬜⬜⬜⬜ 55.9% |
-| **lua** | 4h 32m | 🟦🟦🟦⬜⬜⬜⬜⬜⬜⬜ 37.5% |
-| **md** | 36m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 4.9% |
-| **text** | 5m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.8% |
-| **Other** | 7m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 1.0% |
+| **text** | 20h 31m | 🟦🟦🟦⬜⬜⬜⬜⬜⬜⬜ 35.4% |
+| **go** | 13h 45m | 🟦🟦⬜⬜⬜⬜⬜⬜⬜⬜ 23.7% |
+| **lua** | 8h 37m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 14.9% |
+| **py** | 5h 15m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9.1% |
+| **Other** | 9h 49m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16.9% |
 
 #### 🔥 Projects
 | Project | Time | Percentage |
 | :--- | :--- | :--- |
-| **taka-time.nvim** | 8h 14m | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 68.0% |
-| **plugins** | 3h 45m | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 31.0% |
-| **Takatime** | 6m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.8% |
-| **vscodePlugin** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.1% |
-| **Other** | 0m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0.1% |
+| **taka-time.nvim** | 15h 14m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 26.3% |
+| **unknown** | 11h 46m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20.3% |
+| **dragoon** | 8h 48m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.2% |
+| **markdownToHtml** | 4h 24m | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 7.6% |
+| **Other** | 17h 46m | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30.6% |
 
 
 <!--takatime-end-->
