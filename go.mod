@@ -3,8 +3,11 @@ module github.com/Rtarun3606k/TakaTime
 go 1.25.3
 
 require (
+	github.com/fogleman/gg v1.3.0
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-github/v57 v57.0.0
 	go.mongodb.org/mongo-driver/v2 v2.4.1
+	golang.org/x/image v0.35.0
 	golang.org/x/oauth2 v0.34.0
 	modernc.org/sqlite v1.44.3
 )
@@ -24,9 +27,9 @@ require (
 	github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78 // indirect
 	golang.org/x/crypto v0.33.0 // indirect
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546 // indirect
-	golang.org/x/sync v0.17.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.37.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/text v0.33.0 // indirect
 	modernc.org/libc v1.67.6 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
