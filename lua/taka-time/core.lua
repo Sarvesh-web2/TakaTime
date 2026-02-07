@@ -109,25 +109,44 @@ end
 
 -- Public: Called on Exit
 function M.on_exit()
-	-- Flush whatever is left
-	if state.pending_duration > 0 then
-		vim.fn.system({
-			utils.get_binary_path(),
-			"-uri",
-			config.options.mongo_uri,
-			"-project",
-			"unknown",
-			"-language",
-			"text",
-			"-file",
-			"closing_session",
-			"-duration",
-			tostring(state.pending_duration),
-		})
+	-- 1. Snapshot the time immediately
+	local time_to_send = state.pending_duration
+
+	-- Safety check: If nothing to send, quit
+	if time_to_send <= 0 then
+		return
 	end
+
+	-- Reset the global bucket so we don't double-send (good practice)
+	state.pending_duration = 0
+
+	-- 2. Prepare Args (Get context)
+	local file_path = vim.fn.expand("%:p")
+	local project = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	local ext = vim.fn.fnamemodify(file_path, ":e")
+	if ext == "" then
+		ext = "text"
+	end
+
+	-- 3. Flush (Synchronous System Call)
+	-- We use the LOCAL 'time_to_send' variable here
+	vim.fn.system({
+		utils.get_binary_path(),
+		"-uri",
+		config.options.mongo_uri,
+		"-project",
+		project,
+		"-language",
+		ext,
+		"-file",
+		file_path,
+		"-duration",
+		tostring(time_to_send), -- <--- FIX: Use the snapshot
+		"-editor",
+		"NeoVim",
+	})
 end
 
--- Timer just triggers uploads, it doesn't create time
 function M.start_timer()
 	local timer = vim.loop.new_timer()
 	timer:start(
