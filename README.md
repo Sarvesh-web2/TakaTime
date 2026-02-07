@@ -157,37 +157,16 @@ TakaTime comes with a report generator that works with GitHub Actions to update 
 ```md
 <!--takatime-start-->
 
-> [!NOTE]
-> **TakaTime Dashboard**
-> _Jan 31_ to _Feb 07_
+<h2 align="center">TakaTime Weekly Report</h2>
 
-> [!TIP]
-> **Total Coding Time (7d):** 33h 38m
+<p align="center">
+  <img src="./public/taka-time.png" width="100%" alt="Time Stats" /><br/>
+  <img src="./public/taka-languages.png" width="400" alt="Languages" />
+  <img src="./public/taka-projects.png" width="400" alt="Projects" /><br/>
+  <img src="./public/taka-tech.png" width="100%" alt="Tech Stack" />
+</p>
 
-#### 📈 Trends
-| Period        | Duration    | Period       | Duration      |
-| :---          | :---        | :---         | :---          |
-| Yesterday     | **0m**      | Last 7 Days  | **33h 38m**   |
-| Last 30 Days  | **97h 8m**  | All Time     | **101h 27m**  |
-
-#### 💻 Languages
-| Language | Time | Percentage |
-| :--- | :--- | :--- |
-| **text** | 12h 55m | 🟦🟦🟦⬜⬜⬜⬜⬜⬜⬜ 38.4% |
-| **go** | 7h 42m | 🟦🟦⬜⬜⬜⬜⬜⬜⬜⬜ 22.9% |
-| **rs** | 5h 4m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.1% |
-| **conf** | 4h 3m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.1% |
-| **Other** | 3h 52m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.5% |
-
-#### 🔥 Projects
-| Project | Time | Percentage |
-| :--- | :--- | :--- |
-| **unknown** | 12h 45m | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 37.9% |
-| **hello_world** | 5h 4m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.1% |
-| **taka-time.nvim** | 4h 48m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 14.3% |
-| **dragoon** | 4h 3m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.1% |
-| **Other** | 6h 55m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20.6% |
-
+<p align="center"><em>Generated automatically by <a href="https://github.com/Rtarun3606k/TakaTime">TakaTime</a></em></p>
 
 <!--takatime-end-->
 ```
@@ -275,36 +254,15 @@ MIT License. See `LICENSE` for details.
 
 <!--takatime-start-->
 
-> [!NOTE]
-> **TakaTime Dashboard**
-> _Jan 31_ to _Feb 07_
+<h2 align="center">TakaTime Weekly Report</h2>
 
-> [!TIP]
-> **Total Coding Time (7d):** 33h 38m
+<p align="center">
+  <img src="./public/taka-time.png" width="100%" alt="Time Stats" /><br/>
+  <img src="./public/taka-languages.png" width="400" alt="Languages" />
+  <img src="./public/taka-projects.png" width="400" alt="Projects" /><br/>
+  <img src="./public/taka-tech.png" width="100%" alt="Tech Stack" />
+</p>
 
-#### 📈 Trends
-| Period        | Duration    | Period       | Duration      |
-| :---          | :---        | :---         | :---          |
-| Yesterday     | **0m**      | Last 7 Days  | **33h 38m**   |
-| Last 30 Days  | **97h 8m**  | All Time     | **101h 27m**  |
-
-#### 💻 Languages
-| Language | Time | Percentage |
-| :--- | :--- | :--- |
-| **text** | 12h 55m | 🟦🟦🟦⬜⬜⬜⬜⬜⬜⬜ 38.4% |
-| **go** | 7h 42m | 🟦🟦⬜⬜⬜⬜⬜⬜⬜⬜ 22.9% |
-| **rs** | 5h 4m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.1% |
-| **conf** | 4h 3m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.1% |
-| **Other** | 3h 52m | 🟦⬜⬜⬜⬜⬜⬜⬜⬜⬜ 11.5% |
-
-#### 🔥 Projects
-| Project | Time | Percentage |
-| :--- | :--- | :--- |
-| **unknown** | 12h 45m | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 37.9% |
-| **hello_world** | 5h 4m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 15.1% |
-| **taka-time.nvim** | 4h 48m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 14.3% |
-| **dragoon** | 4h 3m | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.1% |
-| **Other** | 6h 55m | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 20.6% |
-
+<p align="center"><em>Generated automatically by <a href="https://github.com/Rtarun3606k/TakaTime">TakaTime</a></em></p>
 
 <!--takatime-end-->
