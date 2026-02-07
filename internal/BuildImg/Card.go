@@ -30,23 +30,23 @@ func DrawHeader(dc *gg.Context, text string, fontData []byte, theme types.ThemeC
 }
 
 // 1. GENERIC LIST CARD (Languages / Projects)
-func DrawListCard(title string, stats []types.ListStats, fontData []byte, updatedAt time.Time, theme types.ThemeConfig) (image.Image, error) {
-	W, H := 1200, 600
+func DrawListCard(title string, stats []types.ListStats, fontData []byte, updatedAt time.Time, theme types.ThemeConfig, isProject bool) (image.Image, error) {
+	W, H := 1300, 600
 	dc := gogist.SetupContext(W, H, theme)
 
 	// Header
-	if err := DrawHeader(dc, title, fontData, theme, 50); err != nil {
+	if err := DrawHeader(dc, title, fontData, theme, 60); err != nil {
 		return nil, err
 	}
 
-	listFace, _ := loadFontFace(fontData, 32)
+	listFace, _ := loadFontFace(fontData, 48)
 	dc.SetFontFace(listFace)
 
 	startY := 200.0
 	gap := 85.0
 
 	// Bar Config (Kept shorter as requested)
-	barX := 550.0
+	barX := 640.0
 	barW := 450.0
 	barH := 30.0
 
@@ -69,7 +69,13 @@ func DrawListCard(title string, stats []types.ListStats, fontData []byte, update
 
 		// B. Value
 		dc.SetHexColor(theme.SubTextColor)
-		dc.DrawString(stat.Value, 320, y)
+		if isProject {
+
+			dc.DrawString(stat.Value, 400, y)
+		} else {
+
+			dc.DrawString(stat.Value, 320, y)
+		}
 
 		// C. Bar BG
 		dc.SetHexColor(theme.BarBackgroundColor)
@@ -95,17 +101,24 @@ func DrawListCard(title string, stats []types.ListStats, fontData []byte, update
 }
 
 // 2. TIME GRID CARD (2x2)
-func DrawTimeCard(data types.TimeGridStruct, fontData []byte, updatedAt time.Time, theme types.ThemeConfig) (image.Image, error) {
+func DrawTimeCard(data types.TimeGridStruct, fontData []byte, updatedAt time.Time, theme types.ThemeConfig, ownerName string) (image.Image, error) {
 	W, H := 1200, 230
 	dc := gogist.SetupContext(W, H, theme)
 
 	// FIXED: Manually Draw Title at Top-Left (20, 45) instead of Center
 	// This prevents it from crashing into the columns
-	headerFace, _ := loadFontFace(fontData, 40)
+	headerFace, _ := loadFontFace(fontData, 35)
 	dc.SetFontFace(headerFace)
 	dc.SetHexColor(theme.TextColor)
+	title := ""
+	if len(ownerName) < 1 {
+
+		title = "Coding Activity"
+	} else {
+
+		title = ownerName + "'s Coding Activity"
+	}
 	// dc.DrawString("Coding Activity", 20, 45)
-	title := "Coding Activity"
 	textWidth, _ := dc.MeasureString(title)
 	x := (float64(W) - textWidth) / 2
 	y := 60.0 // Keep it high up
@@ -145,7 +158,7 @@ func DrawTechCard(editors []types.ListStats, osSystems []types.ListStats, fontDa
 	W, H := 1600, 400
 	dc := gogist.SetupContext(W, H, theme)
 
-	if err := DrawHeader(dc, "Environment Stats", fontData, theme, 50); err != nil {
+	if err := DrawHeader(dc, "Environment Stats", fontData, theme, 42); err != nil {
 		return nil, err
 	}
 
@@ -163,7 +176,7 @@ func DrawTechCard(editors []types.ListStats, osSystems []types.ListStats, fontDa
 	osSystems = filterUnknown(osSystems)
 
 	// Sub-headers
-	subHeaderFace, _ := loadFontFace(fontData, 48)
+	subHeaderFace, _ := loadFontFace(fontData, 36)
 	dc.SetFontFace(subHeaderFace)
 
 	// Shifted Right Column Start: 650 -> 700 to create a safety gap
@@ -174,7 +187,7 @@ func DrawTechCard(editors []types.ListStats, osSystems []types.ListStats, fontDa
 	dc.DrawString("Operating Systems", 900, 190)
 
 	drawMini := func(list []types.ListStats, xOffset float64) {
-		smallFace, _ := loadFontFace(fontData, 32)
+		smallFace, _ := loadFontFace(fontData, 30)
 		dc.SetFontFace(smallFace)
 
 		startY := 260.0

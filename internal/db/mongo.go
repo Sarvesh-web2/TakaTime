@@ -2,10 +2,11 @@ package db
 
 import (
 	"context"
-	"go.mongodb.org/mongo-driver/v2/mongo"
-	"go.mongodb.org/mongo-driver/v2/mongo/options"
 	"log"
 	"time"
+
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 func ConnectToDataBase(uri string) (*mongo.Client, error) {
@@ -30,7 +31,7 @@ func ConnectToDataBase(uri string) (*mongo.Client, error) {
 		return Client, err
 	}
 
-	log.Println("✅ Connected to the database successfully!")
+	log.Println("Connected to the database successfully!")
 
 	return Client, nil
 }

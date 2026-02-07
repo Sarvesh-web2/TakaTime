@@ -4,10 +4,13 @@ local utils = require("taka-time.utils")
 
 -- STATE
 local state = {
-	last_active = os.time(),
-	pending_duration = 0,
+	last_event_time = os.time(), -- When was the last keystroke?
+	pending_duration = 0, -- Accumulated seconds to send
 	job_id = 0,
 }
+
+-- TIMEOUT: If no activity for 2 mins, don't count that time gap.
+local TIMEOUT_SECONDS = 120
 
 -- Internal: The actual upload logic
 local function attempt_upload()
@@ -15,13 +18,15 @@ local function attempt_upload()
 	if state.job_id ~= 0 then
 		return
 	end -- Busy
+
+	-- If we have very little data (e.g. < 2s), wait for more (debounce)
 	if state.pending_duration < (config.options.debounce_seconds or 2) then
 		return
-	end -- Not enough data
+	end
 
 	-- 2. Snapshot data
 	local time_to_send = state.pending_duration
-	state.pending_duration = 0
+	state.pending_duration = 0 -- Reset bucket
 
 	-- 3. Prepare Args
 	local file_path = vim.fn.expand("%:p")
@@ -34,7 +39,7 @@ local function attempt_upload()
 	local cmd = {
 		utils.get_binary_path(),
 		"-uri",
-		config.options.mongo_uri, -- This now works because init.lua populated it!
+		config.options.mongo_uri,
 		"-project",
 		project,
 		"-language",
@@ -68,22 +73,44 @@ local function attempt_upload()
 	})
 end
 
--- Public: Called on :w
-function M.on_save()
+-- 🧠 THE FIX: Only add time if activity happened recently
+local function on_activity()
 	local now = os.time()
-	state.pending_duration = state.pending_duration + (now - state.last_active)
-	state.last_active = now
-	attempt_upload()
+	local diff = now - state.last_event_time
+
+	-- Only count this time if the gap was small (less than timeout)
+	-- If diff > 120s, it means you were away. We ignore that gap.
+	if diff < TIMEOUT_SECONDS then
+		state.pending_duration = state.pending_duration + diff
+	end
+
+	-- Reset the clock for the next event
+	state.last_event_time = now
+end
+
+-- Setup Autocommands to detect REAL activity
+function M.setup_listeners()
+	local group = vim.api.nvim_create_augroup("TakaTimeGroup", { clear = true })
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChanged", "TextChangedI", "InsertEnter" }, {
+		group = group,
+		callback = on_activity,
+	})
+
+	-- On Save, we treat it as activity AND trigger an upload
+	vim.api.nvim_create_autocmd("BufWritePost", {
+		group = group,
+		callback = function()
+			on_activity()
+			attempt_upload()
+		end,
+	})
 end
 
 -- Public: Called on Exit
 function M.on_exit()
-	local now = os.time()
-	state.pending_duration = state.pending_duration + (now - state.last_active)
-
+	-- Flush whatever is left
 	if state.pending_duration > 0 then
-		print("[Taka] Uploading final data...")
-		-- Blocking call for exit
 		vim.fn.system({
 			utils.get_binary_path(),
 			"-uri",
@@ -100,19 +127,15 @@ function M.on_exit()
 	end
 end
 
--- Helper to start the timer loop
+-- Timer just triggers uploads, it doesn't create time
 function M.start_timer()
 	local timer = vim.loop.new_timer()
 	timer:start(
-		1000,
-		60000,
+		1000, -- Wait 1s
+		60000, -- Repeat every 60s
 		vim.schedule_wrap(function()
-			local now = os.time()
-			-- Add time since last check
-			if state.last_active then
-				state.pending_duration = state.pending_duration + (now - state.last_active)
-			end
-			state.last_active = now
+			-- Note: We do NOT add time here.
+			-- We only check if there is time waiting to be sent.
 			attempt_upload()
 		end)
 	)

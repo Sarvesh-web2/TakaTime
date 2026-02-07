@@ -6,9 +6,9 @@ import (
 	"flag"
 	"fmt"
 	"image"
-	"image/png"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	buildimg "github.com/Rtarun3606k/TakaTime/internal/BuildImg"
@@ -24,12 +24,81 @@ var fontData []byte
 
 func main() {
 
-	theme := types.DefaultTheme()
+	var themeFlag string
+	var customBg, customText, customSubText, customBarBg string
+	var customC1, customC2, customC3, customC4 string
 
-	// Flags
-	flag.StringVar(&theme.BackgroundColor, "bg", theme.BackgroundColor, "Background Color")
-	flag.StringVar(&theme.Color1, "c1", theme.Color1, "Primary Color")
-	flag.Parse()
+	//----------flags
+	days := flag.Int("days", 0, "Number of past days to include (0 = today)")
+	flag.StringVar(&themeFlag, "theme", "dark", "Base theme: dark, light, dracula, nord, gruvbox, monokai, cyberpunk")
+
+	// Custom Overrides
+	flag.StringVar(&customBg, "bg", "", "Override Background Color")
+	flag.StringVar(&customText, "text", "", "Override Text Color")
+	flag.StringVar(&customSubText, "subtext", "", "Override Sub-Text Color")
+	flag.StringVar(&customBarBg, "bar-bg", "", "Override Bar Background Color")
+
+	flag.StringVar(&customC1, "c1", "", "Override Color 1 (Primary)")
+	flag.StringVar(&customC2, "c2", "", "Override Color 2")
+	flag.StringVar(&customC3, "c3", "", "Override Color 3")
+	flag.StringVar(&customC4, "c4", "", "Override Color 4")
+
+	flag.Parse() //  Parse flags first!
+	log.Println("days as a flag is discontinued please stop adding it as a flag. remove it from your work flow file check out readme https://github.com/Rtarun3606k/Takatime for more information ", days)
+
+	// 2. Initialize the Final 'theme' Variable
+	var theme types.ThemeConfig
+
+	// Decide the base: Start with a full "Light" or "Dark" template
+	switch themeFlag {
+	case "light":
+		theme = types.LightTheme
+	case "dracula":
+		theme = types.DraculaTheme
+	case "nord":
+		theme = types.NordTheme
+	case "gruvbox":
+		theme = types.GruvboxTheme
+	case "monokai":
+		theme = types.MonokaiTheme
+	case "cyberpunk":
+		theme = types.CyberpunkTheme
+	default:
+		// Default to Dark if unknown or explicitly "dark"
+		theme = types.DefaultTheme()
+	}
+
+	// Apply Overrides
+	if customBg != "" {
+		theme.BackgroundColor = customBg
+	}
+
+	// 3. Apply Overrides
+	if customBg != "" {
+		theme.BackgroundColor = customBg
+	}
+	if customText != "" {
+		theme.TextColor = customText
+	}
+	if customSubText != "" {
+		theme.SubTextColor = customSubText
+	}
+	if customBarBg != "" {
+		theme.BarBackgroundColor = customBarBg
+	}
+
+	if customC1 != "" {
+		theme.Color1 = customC1
+	}
+	if customC2 != "" {
+		theme.Color2 = customC2
+	}
+	if customC3 != "" {
+		theme.Color3 = customC3
+	}
+	if customC4 != "" {
+		theme.Color4 = customC4
+	}
 
 	// Connect
 	mongoURI := os.Getenv("MONGO_URI")
@@ -49,6 +118,13 @@ func main() {
 
 	if gistToken != "" && targetRepo != "" {
 		fmt.Printf("Updating README for %s...\n", targetRepo)
+
+		if err := dbqueryv2.RunMigrations(client); err != nil {
+			log.Printf("Migration warning: %v", err)
+			// Don't crash, just log it. The report can still run.
+		}
+
+		name := strings.Split(targetRepo, "/")
 
 		// 1. Fetch Real Data
 		projects, err := dbqueryv2.GetListStats(client, "project", 5, theme)
@@ -78,17 +154,17 @@ func main() {
 
 		// job 1 : Languages
 		handleImageJob("Languages", "public/taka-languages.png", gistToken, targetRepo, func() (image.Image, error) {
-			return buildimg.DrawListCard("Language Stats", langs, fontData, time.Now(), theme)
+			return buildimg.DrawListCard("Language Stats", langs, fontData, time.Now(), theme, false)
 		})
 
 		// Job 2: Projects
 		handleImageJob("Projects", "public/taka-projects.png", gistToken, targetRepo, func() (image.Image, error) {
-			return buildimg.DrawListCard("Top Projects", projects, fontData, time.Now(), theme)
+			return buildimg.DrawListCard("Top Projects", projects, fontData, time.Now(), theme, true)
 		})
 
 		// Job 3: Time Grid (2x2 View)
 		handleImageJob("Time Stats", "public/taka-time.png", gistToken, targetRepo, func() (image.Image, error) {
-			return buildimg.DrawTimeCard(timeStats, fontData, time.Now(), theme)
+			return buildimg.DrawTimeCard(timeStats, fontData, time.Now(), theme, name[0])
 		})
 
 		// Job 4: Tech Stack (Editors Left / OS Right)
@@ -127,7 +203,7 @@ func handleImageJob(name, path, token, repo string, generator func() (image.Imag
 		log.Printf("Gen Error (%s): %v\n", name, err)
 		return
 	}
-	SaveImage(name+".png",img)
+	// SaveImage(name+".png", img)
 
 	// 2. Format Config (Using your utils package)
 	cfg, err := utils.FormmatUpload(token, repo, path, "main", "Update "+name)
@@ -147,19 +223,19 @@ func handleImageJob(name, path, token, repo string, generator func() (image.Imag
 	}
 }
 
-func SaveImage(filename string, img image.Image) error {
-	// 1. Create the file
-	f, err := os.Create(filename)
-	if err != nil {
-		return fmt.Errorf("failed to create file: %w", err)
-	}
-	defer f.Close()
-
-	// 2. Encode the image as PNG
-	if err := png.Encode(f, img); err != nil {
-		return fmt.Errorf("failed to encode PNG: %w", err)
-	}
-
-	fmt.Printf("✅ Saved debug image: %s\n", filename)
-	return nil
-}
+// func SaveImage(filename string, img image.Image) error {
+// 	// 1. Create the file
+// 	f, err := os.Create(filename)
+// 	if err != nil {
+// 		return fmt.Errorf("failed to create file: %w", err)
+// 	}
+// 	defer f.Close()
+//
+// 	// 2. Encode the image as PNG
+// 	if err := png.Encode(f, img); err != nil {
+// 		return fmt.Errorf("failed to encode PNG: %w", err)
+// 	}
+//
+// 	fmt.Printf("Saved debug image: %s\n", filename)
+// 	return nil
+// }

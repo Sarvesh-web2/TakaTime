@@ -52,7 +52,7 @@ func UploadImageToGitHub(ctx context.Context, img image.Image, cfg types.UploadS
 		if err != nil {
 			return fmt.Errorf("update failed: %w", err)
 		}
-		fmt.Println("🚀 Image updated successfully on GitHub!")
+		fmt.Println("Image updated successfully on GitHub!")
 	} else {
 		// CREATE
 		_, _, err := client.Repositories.CreateFile(ctx, cfg.Owner, cfg.Repo, cfg.Path, opts)

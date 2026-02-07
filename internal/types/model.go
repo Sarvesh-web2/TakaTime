@@ -95,7 +95,6 @@ type ThemeConfig struct {
 	Color3 string // Tertiary (Yellow/Orange)
 	Color4 string // Quaternary (Red/Purple)
 }
-
 func DefaultTheme() ThemeConfig {
 	return ThemeConfig{
 		BackgroundColor:    "#0d1117", // GitHub Dark Dimmed

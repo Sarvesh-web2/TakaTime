@@ -3,6 +3,7 @@ package dbqueryv2
 import (
 	"context"
 	"fmt"
+	"sort"
 	"time"
 
 	"github.com/Rtarun3606k/TakaTime/internal/types"
@@ -15,44 +16,103 @@ type StatResult struct {
 	Name         string  `bson:"_id"`
 	TotalSeconds float64 `bson:"totalSeconds"`
 }
+type LogTime struct {
+	Timestamp time.Time `bson:"timestamp"`
+	Duration  float64   `bson:"duration"`
+}
+type RawLog struct {
+	Timestamp time.Time `bson:"timestamp"`
+	Duration  float64   `bson:"duration"`
+	Project   string    `bson:"project"`
+	Language  string    `bson:"language"`
+	OS        string    `bson:"os"`
+	Editor    string    `bson:"editor"`
+}
 
-// 1. GENERIC STATS FETCHER (Projects, Languages, OS, Editors)
-// fieldName: "project", "language", "os", or "editor"
+// 1. GENERIC STATS FETCHER (Now uses "Smart Merge" logic)
+// This fixes the "33h Text vs 26h Total" bug by deduplicating time in Go.
 func GetListStats(client *mongo.Client, fieldName string, limit int, theme types.ThemeConfig) ([]types.ListStats, error) {
 	collection := client.Database("takatime").Collection("logs")
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	// Increase timeout since we are fetching more data to process in memory
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
-	pipeline := mongo.Pipeline{
-		// 1. Filter out empty/missing fields (Handles Legacy Data!)
-		{{Key: "$match", Value: bson.D{
-			{Key: fieldName, Value: bson.D{{Key: "$exists", Value: true}, {Key: "$ne", Value: ""}}},
-		}}},
-		// 2. Group by field and sum duration
-		{{Key: "$group", Value: bson.D{
-			{Key: "_id", Value: "$" + fieldName},
-			{Key: "totalSeconds", Value: bson.D{{Key: "$sum", Value: "$duration"}}},
-		}}},
-		// 3. Sort by usage (High to Low)
-		{{Key: "$sort", Value: bson.D{{Key: "totalSeconds", Value: -1}}}},
-	}
-
-	cursor, err := collection.Aggregate(ctx, pipeline)
+	// 1. Fetch RAW logs where the field exists
+	// all  because we need Timestamp & Duration for the merge algo no chnages required !!
+	filter := bson.D{{Key: fieldName, Value: bson.D{{Key: "$ne", Value: ""}}}}
+	cursor, err := collection.Find(ctx, filter)
 	if err != nil {
 		return nil, err
 	}
-	var results []StatResult
-	if err = cursor.All(ctx, &results); err != nil {
+
+	// Temporary struct to capture fields needed for grouping
+	//todo : add this in types in future
+	// may be in next maintaince
+	type RawLog struct {
+		Timestamp time.Time `bson:"timestamp"`
+		Duration  float64   `bson:"duration"`
+		Project   string    `bson:"project"`
+		Language  string    `bson:"language"`
+		OS        string    `bson:"os"`
+		Editor    string    `bson:"editor"`
+	}
+
+	var rawLogs []RawLog
+	if err = cursor.All(ctx, &rawLogs); err != nil {
 		return nil, err
 	}
 
-	// 4. Calculate Total for Percentages
-	var grandTotal float64
-	for _, r := range results {
-		grandTotal += r.TotalSeconds
+	groupedLogs := make(map[string][]LogTime)
+
+	for _, log := range rawLogs {
+		// Extract the key based on the requested fieldName
+		key := ""
+		switch fieldName {
+		case "project":
+			key = log.Project
+		case "language":
+			key = log.Language
+		case "os":
+			key = log.OS
+		case "editor":
+			key = log.Editor
+		}
+
+		if key == "" {
+			continue
+		}
+
+		// Add to the bucket for this specific language/project
+		groupedLogs[key] = append(groupedLogs[key], LogTime{
+			Timestamp: log.Timestamp,
+			Duration:  log.Duration,
+		})
 	}
 
-	// 5. Convert to ListStats struct
+	// 3. Calculate "True Duration" for each group
+	// This runs your helper function on EACH language separately to fix overlaps
+	//this did not work but something else worked but don't touch becsuse it works .. from past
+	var results []StatResult
+	var grandTotal float64
+
+	for name, logs := range groupedLogs {
+		trueDuration := calculateTrueDuration(logs)
+
+		if trueDuration > 0 {
+			results = append(results, StatResult{
+				Name:         name,
+				TotalSeconds: trueDuration,
+			})
+			grandTotal += trueDuration
+		}
+	}
+
+	// 4. Sort by Duration (High to Low)
+	sort.Slice(results, func(i, j int) bool {
+		return results[i].TotalSeconds > results[j].TotalSeconds
+	})
+
+	// 5. Convert to ListStats struct (UI Logic)
 	var stats []types.ListStats
 	colors := []string{theme.Color1, theme.Color2, theme.Color3, theme.Color4, theme.TextColor}
 
@@ -61,107 +121,75 @@ func GetListStats(client *mongo.Client, fieldName string, limit int, theme types
 			break // Only top N
 		}
 
-		// Cycle through colors
 		color := colors[i%len(colors)]
 
-		// Calculate Percent
 		percent := 0.0
 		if grandTotal > 0 {
 			percent = r.TotalSeconds / grandTotal
 		}
 
 		stats = append(stats, types.ListStats{
-			Label:   r.Name, // e.g., "Go" or "Neovim"
+			Label:   r.Name,
 			Value:   formatDuration(r.TotalSeconds),
 			Percent: percent,
 			Color:   color,
 		})
 	}
+
 	return stats, nil
 }
 
 // 2. TIME GRID FETCHER (Uses $facet for efficiency)
 func GetTimeStats(client *mongo.Client) (types.TimeGridStruct, error) {
 	collection := client.Database("takatime").Collection("logs")
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second) // Increased timeout for fetching data
 	defer cancel()
 
-	// Calculate Timestamps
-	now := time.Now()
-	yesterdayStart := now.AddDate(0, 0, -1).Truncate(24 * time.Hour) // Midnight yesterday
-	yesterdayEnd := yesterdayStart.Add(24 * time.Hour)
-	weekAgo := now.AddDate(0, 0, -7)
-	monthAgo := now.AddDate(0, 0, -30)
-
-	// FACET PIPELINE: Runs 4 queries in parallel
-	pipeline := mongo.Pipeline{
-		{{Key: "$facet", Value: bson.D{
-			// A. Yesterday
-			{Key: "yesterday", Value: bson.A{
-				bson.D{{Key: "$match", Value: bson.D{
-					{Key: "timestamp", Value: bson.D{{Key: "$gte", Value: yesterdayStart}, {Key: "$lt", Value: yesterdayEnd}}},
-				}}},
-				bson.D{{Key: "$group", Value: bson.D{{Key: "_id", Value: nil}, {Key: "total", Value: bson.D{{Key: "$sum", Value: "$duration"}}}}}},
-			}},
-			// B. Week
-			{Key: "week", Value: bson.A{
-				bson.D{{Key: "$match", Value: bson.D{{Key: "timestamp", Value: bson.D{{Key: "$gte", Value: weekAgo}}}}}},
-				bson.D{{Key: "$group", Value: bson.D{{Key: "_id", Value: nil}, {Key: "total", Value: bson.D{{Key: "$sum", Value: "$duration"}}}}}},
-			}},
-			// C. Month
-			{Key: "month", Value: bson.A{
-				bson.D{{Key: "$match", Value: bson.D{{Key: "timestamp", Value: bson.D{{Key: "$gte", Value: monthAgo}}}}}},
-				bson.D{{Key: "$group", Value: bson.D{{Key: "_id", Value: nil}, {Key: "total", Value: bson.D{{Key: "$sum", Value: "$duration"}}}}}},
-			}},
-			// D. All Time
-			{Key: "allTime", Value: bson.A{
-				bson.D{{Key: "$group", Value: bson.D{{Key: "_id", Value: nil}, {Key: "total", Value: bson.D{{Key: "$sum", Value: "$duration"}}}}}},
-			}},
-		}}},
-	}
-
-	cursor, err := collection.Aggregate(ctx, pipeline)
+	// 1. Fetch ALL logs (needed for accurate deduplication)
+	// Optimization: If you have millions of logs, you might want to limit this,
+	// but for a personal dashboard, fetching all is fine for accuracy.
+	//already thought this through so no worries man its you from past ..
+	cursor, err := collection.Find(ctx, bson.D{})
 	if err != nil {
 		return types.TimeGridStruct{}, err
 	}
 
-	// Unmarshal Facet Result (It's a bit nested)
-	var facetResult []struct {
-		Yesterday []struct {
-			Total float64 `bson:"total"`
-		} `bson:"yesterday"`
-		Week []struct {
-			Total float64 `bson:"total"`
-		} `bson:"week"`
-		Month []struct {
-			Total float64 `bson:"total"`
-		} `bson:"month"`
-		AllTime []struct {
-			Total float64 `bson:"total"`
-		} `bson:"allTime"`
-	}
-
-	if err = cursor.All(ctx, &facetResult); err != nil {
+	var allLogs []LogTime
+	if err = cursor.All(ctx, &allLogs); err != nil {
 		return types.TimeGridStruct{}, err
 	}
 
-	// Helper to safely get value from slice
-	getVal := func(res []struct {
-		Total float64 `bson:"total"`
-	}) float64 {
-		if len(res) > 0 {
-			return res[0].Total
+	// 2. Define Time Boundaries
+	now := time.Now()
+	yesterdayStart := now.AddDate(0, 0, -1).Truncate(24 * time.Hour)
+	yesterdayEnd := yesterdayStart.Add(24 * time.Hour)
+	weekAgo := now.AddDate(0, 0, -7)
+	monthAgo := now.AddDate(0, 0, -30)
+
+	// 3. Filter Logs into buckets (in Memory)
+	var logsYesterday, logsWeek, logsMonth []LogTime
+
+	for _, log := range allLogs {
+		// Yesterday
+		if log.Timestamp.After(yesterdayStart) && log.Timestamp.Before(yesterdayEnd) {
+			logsYesterday = append(logsYesterday, log)
 		}
-		return 0
+		// Last 7 Days
+		if log.Timestamp.After(weekAgo) {
+			logsWeek = append(logsWeek, log)
+		}
+		// Last 30 Days
+		if log.Timestamp.After(monthAgo) {
+			logsMonth = append(logsMonth, log)
+		}
 	}
 
-	// Build Result
-	res := facetResult[0]
+	// 4. Calculate "True" Duration (Deduplicated)
 	return types.TimeGridStruct{
-		Yestarday: formatDuration(getVal(res.Yesterday)),
-		Week:      formatDuration(getVal(res.Week)),
-		Month:     formatDuration(getVal(res.Month)),
-		AllTime:   formatDuration(getVal(res.AllTime)),
+		Yestarday: formatDuration(calculateTrueDuration(logsYesterday)),
+		Week:      formatDuration(calculateTrueDuration(logsWeek)),
+		Month:     formatDuration(calculateTrueDuration(logsMonth)),
+		AllTime:   formatDuration(calculateTrueDuration(allLogs)),
 	}, nil
 }
 
@@ -174,4 +202,50 @@ func formatDuration(seconds float64) string {
 		return fmt.Sprintf("%dh %dm", h, m)
 	}
 	return fmt.Sprintf("%dm", m)
+}
+
+// CHANGED: Now accepts []LogTime instead of []struct{...}
+func calculateTrueDuration(logs []LogTime) float64 {
+	if len(logs) == 0 {
+		return 0
+	}
+
+	type TimeRange struct {
+		Start int64
+		End   int64
+	}
+
+	var ranges []TimeRange
+	for _, l := range logs {
+		end := l.Timestamp.Unix()
+		start := end - int64(l.Duration)
+		ranges = append(ranges, TimeRange{Start: start, End: end})
+	}
+
+	sort.Slice(ranges, func(i, j int) bool {
+		return ranges[i].Start < ranges[j].Start
+	})
+
+	var merged []TimeRange
+	if len(ranges) > 0 {
+		current := ranges[0]
+		for _, next := range ranges[1:] {
+			if next.Start < current.End {
+				if next.End > current.End {
+					current.End = next.End
+				}
+			} else {
+				merged = append(merged, current)
+				current = next
+			}
+		}
+		merged = append(merged, current)
+	}
+
+	var totalSeconds int64
+	for _, r := range merged {
+		totalSeconds += (r.End - r.Start)
+	}
+
+	return float64(totalSeconds)
 }
