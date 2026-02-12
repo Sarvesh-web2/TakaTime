@@ -17,9 +17,6 @@
   <a href="https://github.com/Rtarun3606k/TakaTime/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/Rtarun3606k/TakaTime?style=for-the-badge&color=blue" alt="License">
   </a>
-  <a href="https://goreportcard.com/report/github.com/Rtarun3606k/TakaTime">
-    <img src="https://goreportcard.com/badge/github.com/Rtarun3606k/TakaTime?style=for-the-badge" alt="Go Report Card">
-  </a>
 
   <br>
 
@@ -32,9 +29,15 @@
 
   <br>
 
-  <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go">
+![Go](https://img.shields.io/badge/Go-65.8%25-00ADD8?style=flat-square&logo=go&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-22.3%25-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Lua](https://img.shields.io/badge/Lua-11.9%25-000080?style=flat-square&logo=lua&logoColor=white)
   <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+
+  ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Rtarun3606k/TakaTime/example.yml)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Rtarun3606k/TakaTime)
+
 
 </div>
 
