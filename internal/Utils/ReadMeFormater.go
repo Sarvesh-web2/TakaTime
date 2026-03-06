@@ -21,9 +21,14 @@ func GenerateOutput() string {
 	// TRICK: Use a fixed pixel width (e.g., 400).
 	// - On Desktop (>850px): 400 + 400 fits side-by-side.
 	// - On Mobile (<800px): They won't fit, so the second one wraps to the next line.
+
+	//30 days
+	sb.WriteString("  <img src=\"./public/taka-languages30.png\" width=\"400\" alt=\"Languages\" />\n")
+	sb.WriteString("  <img src=\"./public/taka-projects30.png\" width=\"400\" alt=\"Projects\" /><br/>\n")
+
+	// All Time
 	sb.WriteString("  <img src=\"./public/taka-languages.png\" width=\"400\" alt=\"Languages\" />\n")
 	sb.WriteString("  <img src=\"./public/taka-projects.png\" width=\"400\" alt=\"Projects\" /><br/>\n")
-
 	// --- ROW 3: TECH STACK (Full Width) ---
 	sb.WriteString("  <img src=\"./public/taka-tech.png\" width=\"100%\" alt=\"Tech Stack\" />\n")
 

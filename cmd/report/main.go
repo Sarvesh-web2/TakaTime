@@ -126,23 +126,23 @@ func main() {
 
 		name := strings.Split(targetRepo, "/")
 
-		// 1. Fetch Real Data
-		projects, err := dbqueryv2.GetListStats(client, "project", 5, theme)
+		// 1. Fetch Real Data for all time all time days = 0 else the count
+		projects, err := dbqueryv2.GetListStats(client, "project", 5, theme, 0)
 		if err != nil {
 			log.Println("Proj Error:", err)
 		}
 
-		langs, err := dbqueryv2.GetListStats(client, "language", 5, theme)
+		langs, err := dbqueryv2.GetListStats(client, "language", 5, theme, 0)
 		if err != nil {
 			log.Println("Lang Error:", err)
 		}
 
-		editors, err := dbqueryv2.GetListStats(client, "editor", 3, theme)
+		editors, err := dbqueryv2.GetListStats(client, "editor", 3, theme, 0)
 		if err != nil {
 			log.Println("Editor Error:", err)
 		}
 
-		osStats, err := dbqueryv2.GetListStats(client, "os", 3, theme)
+		osStats, err := dbqueryv2.GetListStats(client, "os", 3, theme, 0)
 		if err != nil {
 			log.Println("OS Error:", err)
 		}
@@ -152,25 +152,46 @@ func main() {
 			log.Println("Time Error:", err)
 		}
 
+		// past 30 days
+		projects30, err := dbqueryv2.GetListStats(client, "project", 5, theme, 30)
+		if err != nil {
+			log.Println("Proj Error:", err)
+		}
+
+		langs30, err := dbqueryv2.GetListStats(client, "language", 5, theme, 30)
+		if err != nil {
+			log.Println("Lang Error:", err)
+		}
+
 		// job 1 : Languages
-		handleImageJob("Languages", "public/taka-languages.png", gistToken, targetRepo, func() (image.Image, error) {
-			return buildimg.DrawListCard("Language Stats", langs, fontData, time.Now(), theme, false)
+		utils.HandleImageJob("Top Languages - All Time", "public/taka-languages.png", gistToken, targetRepo, func() (image.Image, error) {
+			return buildimg.DrawListCard("Top Languages - All Time", langs, fontData, time.Now(), theme, false)
 		})
 
 		// Job 2: Projects
-		handleImageJob("Projects", "public/taka-projects.png", gistToken, targetRepo, func() (image.Image, error) {
-			return buildimg.DrawListCard("Top Projects", projects, fontData, time.Now(), theme, true)
+		utils.HandleImageJob("Top Projects - All Time", "public/taka-projects.png", gistToken, targetRepo, func() (image.Image, error) {
+			return buildimg.DrawListCard("Top Projects - All Time", projects, fontData, time.Now(), theme, true)
 		})
 
 		// Job 3: Time Grid (2x2 View)
-		handleImageJob("Time Stats", "public/taka-time.png", gistToken, targetRepo, func() (image.Image, error) {
+		utils.HandleImageJob("Time Stats", "public/taka-time.png", gistToken, targetRepo, func() (image.Image, error) {
 			return buildimg.DrawTimeCard(timeStats, fontData, time.Now(), theme, name[0])
 		})
 
 		// Job 4: Tech Stack (Editors Left / OS Right)
-		handleImageJob("Tech Stack", "public/taka-tech.png", gistToken, targetRepo, func() (image.Image, error) {
+		utils.HandleImageJob("environment stats", "public/taka-tech.png", gistToken, targetRepo, func() (image.Image, error) {
 			// Pass both lists to the split-view generator
 			return buildimg.DrawTechCard(editors, osStats, fontData, time.Now(), theme)
+		})
+
+		// job 5 : Languages
+		utils.HandleImageJob("Top Language - Last 30 Days", "public/taka-languages30.png", gistToken, targetRepo, func() (image.Image, error) {
+			return buildimg.DrawListCard("Top Language - Last 30 Days", langs30, fontData, time.Now(), theme, false)
+		})
+
+		// Job 6: Projects
+		utils.HandleImageJob("Top Projects - Last 30 Days", "public/taka-projects30.png", gistToken, targetRepo, func() (image.Image, error) {
+			return buildimg.DrawListCard("Top Projects - Last 30 Days", projects30, fontData, time.Now(), theme, true)
 		})
 
 		content := utils.GenerateOutput()
@@ -194,35 +215,35 @@ func main() {
 
 }
 
-func handleImageJob(name, path, token, repo string, generator func() (image.Image, error)) {
-	fmt.Printf("Processing %s...\n", name)
-
-	// 1. Generate Image
-	img, err := generator()
-	if err != nil {
-		log.Printf("Gen Error (%s): %v\n", name, err)
-		return
-	}
-	// SaveImage(name+".png", img)
-
-	// 2. Format Config (Using your utils package)
-	cfg, err := utils.FormmatUpload(token, repo, path, "main", "Update "+name)
-	if err != nil {
-		log.Printf("Config Error (%s): %v\n", name, err)
-		return
-	}
-
-	// 3. Upload with FRESH Timeout (Critical for loops!)
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel() // Cancels this specific context when function exits
-
-	if err := gogist.UploadImageToGitHub(ctx, img, cfg); err != nil {
-		log.Printf("Upload Error (%s): %v\n", name, err)
-	} else {
-		fmt.Printf("Uploaded: %s\n", path)
-	}
-}
-
+// func handleImageJob(name, path, token, repo string, generator func() (image.Image, error)) {
+// 	fmt.Printf("Processing %s...\n", name)
+//
+// 	// 1. Generate Image
+// 	img, err := generator()
+// 	if err != nil {
+// 		log.Printf("Gen Error (%s): %v\n", name, err)
+// 		return
+// 	}
+// 	// SaveImage(name+".png", img)
+//
+// 	// 2. Format Config (Using your utils package)
+// 	cfg, err := utils.FormmatUpload(token, repo, path, "main", "Update "+name)
+// 	if err != nil {
+// 		log.Printf("Config Error (%s): %v\n", name, err)
+// 		return
+// 	}
+//
+// 	// 3. Upload with FRESH Timeout (Critical for loops!)
+// 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+// 	defer cancel() // Cancels this specific context when function exits
+//
+// 	if err := gogist.UploadImageToGitHub(ctx, img, cfg); err != nil {
+// 		log.Printf("Upload Error (%s): %v\n", name, err)
+// 	} else {
+// 		fmt.Printf("Uploaded: %s\n", path)
+// 	}
+// }
+//
 // func SaveImage(filename string, img image.Image) error {
 // 	// 1. Create the file
 // 	f, err := os.Create(filename)

@@ -59,7 +59,7 @@ func UploadImageToGitHub(ctx context.Context, img image.Image, cfg types.UploadS
 		if err != nil {
 			return fmt.Errorf("creation failed: %w", err)
 		}
-		fmt.Println("✨ Image created successfully on GitHub!")
+		fmt.Println("Image created successfully on GitHub!")
 	}
 
 	return nil

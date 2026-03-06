@@ -31,7 +31,7 @@ type RawLog struct {
 
 // 1. GENERIC STATS FETCHER (Now uses "Smart Merge" logic)
 // This fixes the "33h Text vs 26h Total" bug by deduplicating time in Go.
-func GetListStats(client *mongo.Client, fieldName string, limit int, theme types.ThemeConfig) ([]types.ListStats, error) {
+func GetListStats(client *mongo.Client, fieldName string, limit int, theme types.ThemeConfig, days int) ([]types.ListStats, error) {
 	collection := client.Database("takatime").Collection("logs")
 	// Increase timeout since we are fetching more data to process in memory
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
@@ -39,7 +39,16 @@ func GetListStats(client *mongo.Client, fieldName string, limit int, theme types
 
 	// 1. Fetch RAW logs where the field exists
 	// all  because we need Timestamp & Duration for the merge algo no chnages required !!
+	// filter := bson.D{{Key: fieldName, Value: bson.D{{Key: "$ne", Value: ""}}}}
 	filter := bson.D{{Key: fieldName, Value: bson.D{{Key: "$ne", Value: ""}}}}
+
+if days > 0 {
+	start := time.Now().AddDate(0, 0, -days)
+	filter = append(filter, bson.E{
+		Key: "timestamp",
+		Value: bson.D{{Key: "$gte", Value: start}},
+	})
+}
 	cursor, err := collection.Find(ctx, filter)
 	if err != nil {
 		return nil, err
