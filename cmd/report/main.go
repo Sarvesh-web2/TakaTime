@@ -63,6 +63,28 @@ func main() {
 		theme = types.MonokaiTheme
 	case "cyberpunk":
 		theme = types.CyberpunkTheme
+	case "tokyonight":
+		theme = types.TokyoNightTheme
+	case "everforest":
+		theme = types.EverforestTheme
+	case "iceberg":
+		theme = types.IcebergTheme
+	case "sunset":
+		theme = types.SunsetTheme
+	case "deepocean":
+		theme = types.DeepOceanTheme
+	case "midnight":
+		theme = types.MidnightPurpleTheme
+	case "catppuccin":
+		theme = types.CatppuccinTheme
+	case "solarized":
+		theme = types.SolarizedDarkTheme
+	case "onedark":
+		theme = types.OneDarkProTheme
+	case "material":
+		theme = types.MaterialDarkTheme
+	case "synthwave":
+		theme = types.SynthwaveTheme
 	default:
 		// Default to Dark if unknown or explicitly "dark"
 		theme = types.DefaultTheme()
