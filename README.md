@@ -257,15 +257,26 @@ jobs:
     Use the `-theme` flag to apply a pre-configured color palette.  
     **Default:** `dark`
       
-    | Theme | Description |
-    | :--- | :--- |
-    | `dark` | GitHub Dark Dimmed (Default) |
-    | `light` | GitHub Light |
-    | `dracula` | Dracula Color Palette |
-    | `nord` | Nord Winter Color Palette |
-    | `gruvbox` | Gruvbox Retro |
-    | `monokai` | Monokai Vivid |
-    | `cyberpunk` | High Contrast Neon |
+| Theme | Description |
+| :--- | :--- |
+| `dark` | GitHub Dark Dimmed (Default) |
+| `light` | GitHub Light |
+| `dracula` | Dracula Color Palette |
+| `nord` | Nord Winter Color Palette |
+| `gruvbox` | Gruvbox Retro |
+| `monokai` | Monokai Vivid |
+| `cyberpunk` | High Contrast Neon |
+| `tokyonight` | Tokyo Night Deep Blue Palette |
+| `everforest` | Everforest Soft Nature Theme |
+| `iceberg` | Iceberg Cool Minimal Blues |
+| `sunset` | Warm Sunset Gradient Colors |
+| `deepocean` | Deep Ocean Dark Blue Theme |
+| `midnight` | Midnight Purple Developer Theme |
+| `catppuccin` | Catppuccin Mocha Pastel Palette |
+| `solarized` | Solarized Dark Classic Palette |
+| `onedark` | OneDark Pro VSCode Style |
+| `material` | Material Dark UI Theme |
+| `synthwave` | Retro Synthwave Neon Colors |
     
     **Usage Example:**
     ```bash
