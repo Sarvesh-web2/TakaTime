@@ -66,11 +66,12 @@ function spawnProcess(document) {
     const args = getGoArgs(document, config.MONGO_URI);
 
     const child = spawn(binaryPath, args, {
-      detached: true,
+      detached: !isWin,
       stdio: "ignore", // Change to "inherit" if you want to see logs in Debug Console
       env: {
         ...process.env,
       },
+      windowsHide: true,
     });
     child.unref();
     console.log(`TakaTime: Uploading ${path.basename(document.fileName)}...`);
