@@ -40,6 +40,8 @@ local function get_os_info()
 		os = "linux"
 	elseif os == "darwin" then
 		os = "darwin"
+	elseif string.match(os, "windows") ~= nil then
+		os = "windows"
 	else
 		return nil, nil
 	end
