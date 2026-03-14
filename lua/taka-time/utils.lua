@@ -51,9 +51,6 @@ local function get_os_info()
 	if arch == "aarch64" then
 		arch = "arm64"
 	end
-	if os == "windows" then
-		arch = arch .. ".exe"
-	end
 	return os, arch
 end
 
