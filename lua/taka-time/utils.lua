@@ -3,7 +3,14 @@ local config = require("taka-time.config")
 
 function M.get_binary_path()
 	local plugin_root = vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ":h:h:h")
-	return plugin_root .. "/taka-upload"
+	local bin_path = plugin_root .. "/taka-upload"
+
+	local os_name = vim.loop.os_uname().sysname:lower()
+	if string.match(os_name, "windows") ~= nil then
+		bin_path = bin_path .. ".exe"
+	end
+
+	return bin_path
 end
 
 function M.get_version_file_path()
@@ -58,16 +65,6 @@ function M.ensure_binary()
 	local bin_path = M.get_binary_path()
 	local target_ver = config.options.binary_version
 	local current_ver = M.get_installed_version()
-	local os_name, arch = get_os_info()
-	if not os_name then
-		print("[Taka] Auto-install not supported for this OS.")
-		return
-	end
-	local ext = ""
-	if os_name == "windows" then
-		ext = ".exe"
-		bin_path = bin_path .. ext
-	end
 
 	-- 1. Check if we are already up to date
 	if vim.fn.filereadable(bin_path) == 1 and current_ver == target_ver then
@@ -78,6 +75,13 @@ function M.ensure_binary()
 	if current_ver and current_ver ~= target_ver then
 		print(string.format("[Taka] Updating %s -> %s...", current_ver, target_ver))
 	end
+
+	local os_name, arch = get_os_info()
+	if not os_name then
+		print("[Taka] Auto-install not supported for this OS.")
+		return
+	end
+	local ext = os_name == "windows" and ".exe" or ""
 
 	local url = string.format(
 		"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/taka-upload-%s-%s%s",
