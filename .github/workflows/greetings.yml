@@ -22,28 +22,23 @@ jobs:
             let message;
 
             if (isPR) {
-              message = `👋 Thanks for contributing to TakaTime!
-
-Before review:
-- Ensure API compatibility is maintained
-- Avoid breaking editor integrations
-- Update docs if behavior changes
-
-Maintainers will review soon`;
+              message = "👋 Thanks for contributing to TakaTime!\n\n" +
+              "Before review:\n" +
+              "- Ensure API compatibility is maintained\n" +
+              "- Avoid breaking editor integrations\n" +
+              "- Update docs if behavior changes\n\n" +
+              "Maintainers will review soon";
             } else {
-              message = `👋 Thanks for reporting an issue in TakaTime!
-
-Please include:
-- Server setup (Docker / local / cloud)
-- Editor + plugin used (VSCode, Neovim, etc.)
-- Steps to reproduce
-- Logs or error output
-
-Important:
-Check your debug logs at:
-~/.takatime/debug.log
-
-Sharing relevant log snippets helps us debug much faster`;
+              message = "👋 Thanks for reporting an issue in TakaTime!\n\n" +
+              "Please include:\n" +
+              "- Server setup (Docker / local / cloud)\n" +
+              "- Editor + plugin used (VSCode, Neovim, etc.)\n" +
+              "- Steps to reproduce\n" +
+              "- Logs or error output\n\n" +
+              "Important:\n" +
+              "Check your debug logs at:\n" +
+              "~/.takatime/debug.log\n\n" +
+              "Sharing relevant log snippets helps us debug much faster";
             }
 
             await github.rest.issues.createComment({
