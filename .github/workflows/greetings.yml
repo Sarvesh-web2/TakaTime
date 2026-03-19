@@ -19,16 +19,19 @@ jobs:
           script: |
             const isPR = !!context.payload.pull_request;
 
-            const message = isPR
-              ? `👋 Thanks for contributing to TakaTime!
+            let message;
+
+            if (isPR) {
+              message = `👋 Thanks for contributing to TakaTime!
 
 Before review:
 - Ensure API compatibility is maintained
 - Avoid breaking editor integrations
 - Update docs if behavior changes
 
-Maintainers will review soon `
-              : `👋 Thanks for reporting an issue in TakaTime!
+Maintainers will review soon`;
+            } else {
+              message = `👋 Thanks for reporting an issue in TakaTime!
 
 Please include:
 - Server setup (Docker / local / cloud)
@@ -41,6 +44,7 @@ Check your debug logs at:
 ~/.takatime/debug.log
 
 Sharing relevant log snippets helps us debug much faster`;
+            }
 
             await github.rest.issues.createComment({
               ...context.repo,
