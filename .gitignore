@@ -9,7 +9,8 @@ taka-cli
 
 # Ignore logs
 *.log
-
+#ignore csv
+*.csx
 # Ignore Mac system files
 .DS_Store
 taka-report

@@ -1,5 +1,6 @@
 local M = {}
 
+-- all defaults configs
 M.defaults = {
 	binary_version = "v2.1.0",
 
@@ -8,6 +9,8 @@ M.defaults = {
 	debounce_seconds = 2,
 
 	debug = false,
+
+	ignore_repos = {},
 }
 
 M.options = {}

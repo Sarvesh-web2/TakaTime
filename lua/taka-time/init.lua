@@ -16,8 +16,10 @@ function M.setup(opts)
 			config.options.mongo_uri = saved_uri
 		end
 	end
-
+	----------------------------------------------------------------------------------------
 	-- 3. Create Commands
+
+	-- TakaInit command
 	vim.api.nvim_create_user_command("TakaInit", function()
 		local uri = vim.fn.inputsecret("Enter your Mongo URI: ")
 		if uri and uri ~= "" then
@@ -29,12 +31,67 @@ function M.setup(opts)
 		end
 	end, {})
 
+	----------------------------------------------------------------------------------
+	-- TakaStatus command
 	vim.api.nvim_create_user_command("TakaStatus", function()
 		if config.options.mongo_uri and config.options.mongo_uri ~= "" then
 			print("TakaTime is configured and running.")
 		else
 			print("TakaTime is NOT configured. Run :TakaInit")
 		end
+	end, {})
+
+	-----------------------------------------------------------------------------------
+	-- Load the ignore list into RAM on startup
+	config.options.ignore_repos = storage.load_ignore_list() or {}
+
+	-- Command to IGNORE the current directory
+	vim.api.nvim_create_user_command("TakaIgnore", function()
+		local cwd = vim.fn.getcwd()
+
+		-- Check if it's already in the RAM list
+		if vim.tbl_contains(config.options.ignore_repos, cwd) then
+			print("TakaTime: " .. cwd .. " is already being ignored.")
+			return
+		end
+
+		-- Add to RAM (Instant)
+		table.insert(config.options.ignore_repos, cwd)
+
+		-- Save to Disk
+		storage.save_ignore_list(config.options.ignore_repos)
+
+		print("TakaTime: Ignored tracking for " .. cwd)
+	end, {})
+
+	------------------------------------------------------------------------------------------
+	-- Command to TRACK (Undo ignore) for the current directory
+	vim.api.nvim_create_user_command("TakaTrack", function()
+		local cwd = vim.fn.getcwd()
+		local updated_list = {}
+		local found = false
+
+		-- Rebuild the list, skipping the current directory
+		for _, repo in ipairs(config.options.ignore_repos) do
+			if repo == cwd then
+				found = true
+			else
+				table.insert(updated_list, repo)
+			end
+		end
+
+		if not found then
+			print("TakaTime: " .. cwd .. " is already being tracked.")
+			return
+		end
+
+		-- Update RAM (Instant)
+		config.options.ignore_repos = updated_list
+
+		-- Save to Disk
+		storage.save_ignore_list(config.options.ignore_repos)
+
+		print("TakaTime: Resumed tracking for " .. cwd)
 	end, {})
 
 	-- 4. Ensures Binary Exists

@@ -101,4 +101,34 @@ function M.get_os()
 	return os_name
 end
 
+-- Helper: Ensure path ends with a separator for safe boundary checking
+local function ensure_trailing_slash(path)
+	-- If it doesn't already end with a slash (or backslash for Windows), add one
+	if not path:match("[\\/]$") then
+		return path .. "/"
+	end
+	return path
+end
+
+-- Helper: Check if the current directory is inside an ignored repository
+function M.is_ignored(current_dir)
+	local config = require("taka-time.config")
+	local ignore_list = config.options.ignore_repos or {}
+
+	-- Add a slash to the current directory for safe comparison
+	local safe_current = ensure_trailing_slash(current_dir)
+
+	for _, ignored_path in ipairs(ignore_list) do
+		-- Add a slash to the ignored path as well
+		local safe_ignored = ensure_trailing_slash(ignored_path)
+
+		-- Now it strictly checks folder boundaries, not just partial strings!
+		if vim.startswith(safe_current, safe_ignored) then
+			return true
+		end
+	end
+
+	return false
+end
+
 return M

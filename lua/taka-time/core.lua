@@ -31,6 +31,13 @@ local function attempt_upload()
 	-- 3. Prepare Args
 	local file_path = vim.fn.expand("%:p")
 	local project = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+	--  THE PRIVACY FILTER
+	if utils.is_ignored(vim.fn.getcwd()) then
+		state.pending_duration = 0 -- Reset bucket so time doesn't build up
+		return
+	end
+
 	local ext = vim.fn.fnamemodify(file_path, ":e")
 	if ext == "" then
 		ext = "text"
@@ -73,7 +80,8 @@ local function attempt_upload()
 	})
 end
 
--- 🧠 THE FIX: Only add time if activity happened recently
+-----------------------------------------------------------------------------------
+--  THE FIX: Only add time if activity happened recently
 local function on_activity()
 	local now = os.time()
 	local diff = now - state.last_event_time
@@ -107,6 +115,7 @@ function M.setup_listeners()
 	})
 end
 
+-------------------------------------------------------------------------------------
 -- Public: Called on Exit
 function M.on_exit()
 	-- 1. Snapshot the time immediately
@@ -123,6 +132,13 @@ function M.on_exit()
 	-- 2. Prepare Args (Get context)
 	local file_path = vim.fn.expand("%:p")
 	local project = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+	--  THE PRIVACY FILTER
+	if utils.is_ignored(vim.fn.getcwd()) then
+		state.pending_duration = 0 -- Reset bucket so time doesn't build up
+		return
+	end
+
 	local ext = vim.fn.fnamemodify(file_path, ":e")
 	if ext == "" then
 		ext = "text"
@@ -161,3 +177,7 @@ function M.start_timer()
 end
 
 return M
+
+
+
+
