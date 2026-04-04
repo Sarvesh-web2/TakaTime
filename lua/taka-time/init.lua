@@ -153,7 +153,7 @@ function M.setup(opts)
 
   -- 4. Ensures Binary Exists
   pcall(utils.ensure_binary)
-
+pcall(utils.ensure_binary_dashboard)
   -- 5. START TRACKING (The Fix)
   -- We delegate all logic to core. This sets up CursorMoved, TextChanged, AND BufWritePost
   core.setup_listeners()

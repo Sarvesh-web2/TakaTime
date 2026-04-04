@@ -59,59 +59,88 @@ end
 --------------------------------------------------------------------------------------------
 ---binary downloads
 --------------------------------------------------------------------------------------------
-function M.ensure_binaries()
-	local upload_bin = M.get_binary_path()
-	local dash_bin = M.get_binary_path_dashboard()
+function M.ensure_binary()
+	local bin_path = M.get_binary_path()
 	local target_ver = config.options.binary_version
 	local current_ver = M.get_installed_version()
 
-	local upload_exists = vim.fn.filereadable(upload_bin) == 1
-	local dash_exists = vim.fn.filereadable(dash_bin) == 1
-
-	-- 1. Check if BOTH are installed and up-to-date
-	if upload_exists and dash_exists and current_ver == target_ver then
+	-- 1. Check if we are already up to date
+	if vim.fn.filereadable(bin_path) == 1 and current_ver == target_ver then
 		return
 	end
 
-	-- 2. Update status message
+	-- 2. Update logic
 	if current_ver and current_ver ~= target_ver then
-		print(string.format("[TakaTime] Updating binaries %s -> %s...", current_ver, target_ver))
-	else
-		print("[TakaTime] Installing binaries (" .. target_ver .. ")...")
+		print(string.format("[Taka] Updating %s -> %s...", current_ver, target_ver))
 	end
 
 	local os_name, arch = get_os_info()
 	if not os_name then
-		print("[TakaTime] Auto-install not supported for this OS.")
+		print("[Taka] Auto-install not supported for this OS.")
 		return
 	end
 
-	-- 3. Helper function to download and set permissions for ANY binary
-	local function download_binary(bin_name, dest_path)
-		if vim.fn.filereadable(dest_path) == 1 then
-			os.remove(dest_path)
-		end
+	local url = string.format(
+		"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/taka-upload-%s-%s",
+		target_ver,
+		os_name,
+		arch
+	)
 
-		-- Assumes your GitHub release assets are named like: taka-upload-linux-amd64
-		local url = string.format(
-			"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/%s-%s-%s",
-			target_ver,
-			bin_name,
-			os_name,
-			arch
-		)
-
-		vim.fn.system({ "curl", "-L", "-o", dest_path, url })
-		vim.fn.system({ "chmod", "+x", dest_path })
+	-- 3. Delete old binary and download new one
+	if vim.fn.filereadable(bin_path) == 1 then
+		os.remove(bin_path)
 	end
 
-	-- 4. Execute downloads sequentially
-	download_binary("taka-upload", upload_bin)
-	download_binary("taka-dashboard", dash_bin)
+	print("[Taka] Downloading " .. target_ver .. "...")
+	vim.fn.system({ "curl", "-L", "-o", bin_path, url })
+	vim.fn.system({ "chmod", "+x", bin_path })
 
-	-- 5. Update the version file so we don't re-download next time
+	-- 4. Update version file
 	M.write_installed_version(target_ver)
-	print("[TakaTime] Successfully installed all binaries!")
+	print("[Taka] Successfully installed " .. target_ver)
+end
+
+function M.ensure_binary_dashboard()
+	local bin_path = M.get_binary_path_dahboard()
+	local target_ver = config.options.binary_version
+	local current_ver = M.get_installed_version()
+
+	-- 1. Check if we are already up to date
+	if vim.fn.filereadable(bin_path) == 1 and current_ver == target_ver then
+		return
+	end
+
+	-- 2. Update logic
+	if current_ver and current_ver ~= target_ver then
+		print(string.format("[Taka] Updating %s -> %s...", current_ver, target_ver))
+	end
+
+	local os_name, arch = get_os_info()
+	if not os_name then
+		print("[Taka] Auto-install not supported for this OS.")
+		return
+	end
+
+	local url = string.format(
+		"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/taka-dashboard-%s-%s",
+		target_ver,
+		os_name,
+		arch
+	)
+
+	-- 3. Delete old binary and download new one
+	if vim.fn.filereadable(bin_path) == 1 then
+		os.remove(bin_path)
+	end
+
+	print("[Taka] Downloading " .. target_ver .. "...")
+	vim.fn.system({ "curl", "-L", "-o", bin_path, url })
+	vim.fn.system({ "chmod", "+x", bin_path })
+
+	-- 4. Update version file
+	M.write_installed_version(target_ver)
+	print("[Taka] Successfully installed " .. target_ver)
 end
 
 -----------------------------------------------------------------------------------------
