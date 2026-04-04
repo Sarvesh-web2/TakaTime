@@ -3,7 +3,14 @@ local config = require("taka-time.config")
 
 function M.get_binary_path()
 	local plugin_root = vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ":h:h:h")
-	return plugin_root .. "/taka-upload"
+	local bin_path = plugin_root .. "/taka-upload"
+
+	local os_name = vim.loop.os_uname().sysname:lower()
+	if string.match(os_name, "windows") ~= nil then
+		bin_path = bin_path .. ".exe"
+	end
+
+	return bin_path
 end
 
 function M.get_binary_path_dahboard()
@@ -45,6 +52,8 @@ local function get_os_info()
 		os = "linux"
 	elseif os == "darwin" then
 		os = "darwin"
+	elseif string.match(os, "windows") ~= nil then
+		os = "windows"
 	else
 		return nil, nil
 	end
@@ -142,6 +151,8 @@ function M.ensure_binary_dashboard()
 	M.write_installed_version(target_ver)
 	print("[Taka] Successfully installed " .. target_ver)
 end
+
+
 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
