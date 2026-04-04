@@ -29,6 +29,7 @@ func initModel(mongoURI string, theme types.ThemeConfig) Model {
 		TUITheme:  theme,
 		AppStyles: Styles.InitStyles(theme),
 		Spinner:   s,
+		ActiveTab: "home", // default Home
 	}
 }
 

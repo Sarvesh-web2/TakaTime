@@ -88,7 +88,6 @@ func InitStyles(theme types.ThemeConfig) AppStyles {
 			Foreground(lipgloss.Color(theme.SubTextColor)).
 			MarginTop(1),
 
-
 		StatCard: lipgloss.NewStyle().
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(lipgloss.Color(theme.SubTextColor)).
@@ -102,5 +101,44 @@ func InitStyles(theme types.ThemeConfig) AppStyles {
 		StatCardValue: lipgloss.NewStyle().
 			Foreground(lipgloss.Color(theme.Color1)). // Primary color for the big numbers!
 			Bold(true),
+	}
+}
+
+// BuildStyles compiles raw hex codes from a theme into Lipgloss styles
+func BuildStyles(theme types.ThemeConfig) AppStyles {
+	return AppStyles{
+		// 1. Primary and Secondary Accent Colors
+		Color1: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color1)),
+		Color2: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color2)),
+		Color3: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color3)), // Added!
+		Color4: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color4)), // Added!
+
+		// 2. Standard Text Colors
+		Title:   lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color1)).Bold(true), // Added!
+		Text:    lipgloss.NewStyle().Foreground(lipgloss.Color(theme.TextColor)),
+		SubText: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.SubTextColor)),
+
+		// 3. Layout Elements
+		Navbar: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color2)).Bold(true), // Added!
+		Footer: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.SubTextColor)),      // Added!
+
+		// 4. The outer border style for your main boxes
+		Box: lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color(theme.BarBackgroundColor)).
+			Padding(1, 2),
+
+		// 5. Standardized list styles
+		ListLabel:   lipgloss.NewStyle().Foreground(lipgloss.Color(theme.TextColor)).Bold(true),
+		ListValue:   lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color1)),
+		ListPercent: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.SubTextColor)).Italic(true),
+
+		// 6. Stat Card Styles (Added!)
+		StatCard: lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color(theme.BarBackgroundColor)).
+			Padding(0, 1), // Tighter padding for smaller stat cards
+		StatCardTitle: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.SubTextColor)),
+		StatCardValue: lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Color1)).Bold(true),
 	}
 }

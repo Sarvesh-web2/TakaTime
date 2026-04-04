@@ -109,11 +109,36 @@ func DefaultTheme() ThemeConfig {
 	}
 }
 
+//coding hours distribution
+
+type ActivityDistribution struct {
+	Morning   float64 // 06:00 - 12:00
+	Afternoon float64 // 12:00 - 18:00
+	Evening   float64 // 18:00 - 24:00
+	Night     float64 // 00:00 - 06:00
+	MaxVal    float64 // The highest of the four
+}
+
 // cache for dashborad
 type CacheData struct {
-	Languages []ListStats    `json:"languages"`
-	Projects  []ListStats    `json:"projects"`
-	OS        []ListStats    `json:"os"`
-	Editors   []ListStats    `json:"editors"`
-	TimeStats TimeGridStruct `json:"timeStats"`
+	Languages    []ListStats          `json:"languages"`
+	Projects     []ListStats          `json:"projects"`
+	OS           []ListStats          `json:"os"`
+	Editors      []ListStats          `json:"editors"`
+	TimeStats    TimeGridStruct       `json:"timeStats"`
+	Activity     ActivityDistribution `json:"activity"`
+	Streak       int                  `json:"streak"`
+	TodayHours   float64              `json:"today_hours"`
+	AverageHours float64              `json:"average_hours"`
+	DailyHistory map[string]float64   `json:"daily_history"`
+	Theme        string               `json:"theme"`
+}
+
+//all avaliable themes
+
+var AvailableThemes = []string{
+	"default", "light", "dracula", "nord", "gruvbox", "monokai",
+	"cyberpunk", "tokyonight", "everforest", "iceberg", "sunset",
+	"deepocean", "midnight", "catppuccin", "solarized", "onedark",
+	"material", "synthwave",
 }

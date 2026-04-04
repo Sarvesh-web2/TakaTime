@@ -32,7 +32,12 @@ type Model struct {
 	DataFetchedTime time.Time
 
 	//cache bool to nofify if it is from cache
-	CacheData bool
+	CacheData    bool
+	TodayHours   float64
+	ActivityData types.ActivityDistribution
+	Streak       int
+	AverageHours float64
+	DailyHistory map[string]float64
 
 	// bacis responsive vars
 	Width    int
@@ -45,4 +50,11 @@ type Model struct {
 
 	//spinner
 	Spinner spinner.Model
+
+	//active tabs
+	ActiveTab string
+
+	//settings Model
+	SettingsCursor int
+	ShowSettings   bool
 }

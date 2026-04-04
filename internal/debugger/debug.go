@@ -47,7 +47,7 @@ func SetupDashboardLog() (*os.File, error) {
 
 	// 2. Construct Paths
 	logDir := filepath.Join(homeDirLocation, ".takatime")
-	logPath := filepath.Join(logDir, "debug-logs.log")
+	logPath := filepath.Join(logDir, "debug-logs-dashboard.log")
 
 	// 3. Ensure Directory Exists
 	if err := os.MkdirAll(logDir, 0755); err != nil {

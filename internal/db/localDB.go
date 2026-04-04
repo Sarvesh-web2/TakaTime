@@ -44,6 +44,11 @@ func InitSQLite() (*sql.DB, error) {
 		id TEXT PRIMARY KEY,
 		data TEXT,
 		updated_at DATETIME
+	);
+	CREATE TABLE IF NOT EXISTS config (
+		id INTEGER PRIMARY KEY,
+		config TEXT,
+		timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 	);`
 
 	if _, err := sqliteDB.Exec(query); err != nil {
@@ -179,4 +184,41 @@ func GetDashboardCache(db *sql.DB) (*types.CacheData, error) {
 	}
 
 	return &cache, nil
+}
+
+//local theme save !!!
+
+// Save the Config (Uses ID 1 so it always overwrites the same row)
+func SaveConfig(db *sql.DB, config types.CacheData) error {
+	configJSON, err := json.Marshal(config)
+	if err != nil {
+		return err
+	}
+
+	query := `
+	INSERT OR REPLACE INTO config (id, config, timestamp) 
+	VALUES (1, ?, CURRENT_TIMESTAMP);`
+
+	_, err = db.Exec(query, string(configJSON))
+	return err
+}
+
+// 3. Load the Config
+func LoadConfig(db *sql.DB) (types.CacheData, error) {
+	var configStr string
+	var conf types.CacheData
+
+	// Grab row ID 1
+	err := db.QueryRow(`SELECT config FROM config WHERE id = 1`).Scan(&configStr)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			// If no config exists yet, return a default!
+			return types.CacheData{Theme: "sunset"}, nil
+		}
+		return conf, err
+	}
+
+	// Unmarshal the JSON string back into our struct
+	err = json.Unmarshal([]byte(configStr), &conf)
+	return conf, err
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"time"
 
@@ -26,11 +27,6 @@ func (m Model) GetData(URI string) (Model, *mongo.Client, error) {
 			return m, nil, err
 		}
 
-		// Optional: Keep your debug printing if you want
-		// fmt.Println("---" + value + "---")
-		// for _, stat := range data {
-		// 	fmt.Printf("%-15s | %-10s | %.1f%%\n", stat.Label, stat.Value, stat.Percent*100)
-		// }
 
 		// Assign the data directly to the model's fields
 		switch value {
@@ -44,6 +40,29 @@ func (m Model) GetData(URI string) (Model, *mongo.Client, error) {
 			m.editorListStats = data
 		}
 
+	}
+
+	context, cancle := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancle()
+	collection := Client.Database("takatime").Collection("logs")
+
+	streak, todayHours, avgHours, dailyHistory, err := dbqueryv2.FetchStreakAndToday(context, collection)
+	if err != nil {
+		// handle error or just log it
+		log.Printf("Error fetching streak: %v", err)
+	} else {
+		m.Streak = streak
+		m.TodayHours = todayHours
+		m.AverageHours = avgHours
+		m.DailyHistory = dailyHistory
+	}
+
+	// 2. Fetch Activity Distribution (Coder Persona)
+	activityDist, err := dbqueryv2.FetchActivityDistribution(context, collection)
+	if err != nil {
+		log.Printf("Error fetching activity: %v", err)
+	} else {
+		m.ActivityData = activityDist
 	}
 
 	//get time grid stats today yestarday all that
