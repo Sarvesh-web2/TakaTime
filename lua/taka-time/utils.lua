@@ -110,6 +110,8 @@ function M.ensure_binaries()
 			arch
 		)
 
+		print("[Taka Debug] Trying to download: " .. url)
+
 		vim.fn.system({ "curl", "-fSL", "-o", dest_path, url })
 		vim.fn.system({ "chmod", "+x", dest_path })
 	end
