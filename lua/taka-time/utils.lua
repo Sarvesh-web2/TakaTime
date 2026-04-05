@@ -102,7 +102,9 @@ function M.ensure_binary(binary)
 
 	print("[Taka] Downloading " .. binary .. " " .. target_ver .. "...")
 	vim.fn.system({ "curl", "-L", "-o", bin_path, url })
-	vim.fn.system({ "chmod", "+x", bin_path })
+	if os_name ~= "windows" then
+		vim.fn.system({ "chmod", "+x", bin_path })
+	end
 
 	-- 4. Update version file
 	M.write_installed_version(target_ver)
