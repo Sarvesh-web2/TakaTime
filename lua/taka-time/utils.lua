@@ -1,6 +1,12 @@
 local M = {}
 local config = require("taka-time.config")
 
+---@enum BinaryEnum
+M.BinaryEnum = {
+	UPLOAD = "taka-upload",
+	DASHBOARD = "taka-dashboard",
+}
+
 function M.get_binary_path(binary)
 	local plugin_root = vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ":h:h:h")
 	local bin_path = plugin_root .. "/" .. binary

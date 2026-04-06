@@ -44,7 +44,7 @@ local function attempt_upload()
 	end
 
 	local cmd = {
-		utils.get_binary_path("taka-upload"),
+		utils.get_binary_path(utils.BinaryEnum.UPLOAD),
 		"-uri",
 		config.options.mongo_uri,
 		"-project",
@@ -147,7 +147,7 @@ function M.on_exit()
 	-- 3. Flush (Synchronous System Call)
 	-- We use the LOCAL 'time_to_send' variable here
 	vim.fn.system({
-		utils.get_binary_path("taka-upload"),
+		utils.get_binary_path(utils.BinaryEnum.UPLOAD),
 		"-uri",
 		config.options.mongo_uri,
 		"-project",
