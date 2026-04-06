@@ -379,6 +379,7 @@ Thanks to all contributors who made this project possible!
 <a href="https://github.com/Rtarun3606k/TakaTime/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Rtarun3606k/TakaTime" />
 </a>
+
 ---
 
 ## License
