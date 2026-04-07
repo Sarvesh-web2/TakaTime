@@ -5,7 +5,7 @@ const path = require("path");
 const os = require("os");
 
 // CHANGE THIS TO v2.0.4
-const CURRENT_VERSION = "v2.1.0";
+const CURRENT_VERSION = "v2.2.0";
 
 function getConfig() {
   const homeDir = os.homedir();
@@ -60,44 +60,21 @@ function getConfig() {
 // ... module.exports ...
 
 // We accept 'version' here now, which we will use later for downloading
-function checkBinary(version) {
+function checkBinaries(version) {
   const homeDir = os.homedir();
-  let binName = null;
-  if (process.platform === "linux") {
-    binName = "taka-uploader";
-  } else if (process.platform === "darwin") {
-    binName = "taka-uploader";
-  } else if (process.platform === "win32") {
-    binName = "taka-uploader.exe";
-  } else {
-    vscode.window.showErrorMessage(
-      `TakaTime: Unsupported platform: ${process.platform}`,
-    );
-    return false;
-  }
+  const binDir = path.join(homeDir, ".takatime", "bin");
+  const ext = process.platform === "win32" ? ".exe" : "";
 
-  // 👇 WE ADD VERSION TO THE LOCAL FILENAME HERE
-  if (process.platform === "win32") {
-    binName = `taka-uploader-${version}.exe`;
-  } else {
-    binName = `taka-uploader-${version}`;
-  }
+  // The exact names we used in the download script!
+  const uploadBinary = path.join(binDir, `taka-upload-${version}${ext}`);
+  const dashBinary = path.join(binDir, `taka-dashboard-${version}${ext}`);
 
-  const binaryPath = path.join(homeDir, ".takatime", "bin", binName);
-
-  if (!fs.existsSync(binaryPath)) {
-    // We can now use the version in the warning!
-    vscode.window.showWarningMessage(
-      `TakaTime: Binary ${version} missing. Auto-download needed.`,
-    );
-    return false;
-  }
-  console.log("Binary found.");
-  return true;
+  // Return true ONLY if both files exist on the user's computer
+  return fs.existsSync(uploadBinary) && fs.existsSync(dashBinary);
 }
 
 module.exports = {
   getConfig,
-  checkBinary,
+  checkBinaries,
   CURRENT_VERSION,
 };

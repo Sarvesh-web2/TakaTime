@@ -2,8 +2,8 @@ const vscode = require("vscode");
 const path = require("path");
 const statusHelper = require("./Plugin/StatusBarUpdate");
 const setupHelper = require("./Plugin/Setup");
-// 👇 CHANGE THIS IMPORT
 const heartbeat = require("./Plugin/HeartBeat");
+const { showDashboard } = require("./Plugin/showDashboard");
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -14,7 +14,7 @@ async function activate(context) {
   // 1. Status Bar
   const statusBar = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Left,
-    100
+    100,
   );
   statusBar.text = "$(sync~spin) TakaTime: Checking...";
   statusBar.command = "takatime.setup";
@@ -26,6 +26,31 @@ async function activate(context) {
     setupHelper.runSetup(statusBar);
   });
   context.subscriptions.push(setupCommand);
+
+  // ... your other existing setup code ...
+
+  // Register the dashboard command
+  const dashCommand = vscode.commands.registerCommand(
+    "takatime.showDashboard",
+    () => {
+      showDashboard(context);
+    },
+  );
+
+  // Don't forget to push it to subscriptions so VS Code can clean it up later!
+  context.subscriptions.push(dashCommand);
+
+  // --- Create Dashboard Button in Status Bar ---
+  const dashStatusBar = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    99, // This priority number keeps it right next to your main status item (100)
+  );
+  dashStatusBar.text = "$(graph)  TakaTime Dashboard";
+  dashStatusBar.tooltip = "Open TakaTime Dashboard";
+  dashStatusBar.command = "takatime.showDashboard";
+  dashStatusBar.show();
+
+  context.subscriptions.push(dashStatusBar);
 
   // 3. ⚡ SAVE LISTENER (Now with Heartbeat Logic!)
   const saveListener = vscode.workspace.onDidSaveTextDocument((document) => {

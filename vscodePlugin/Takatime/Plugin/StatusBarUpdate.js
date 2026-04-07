@@ -1,4 +1,3 @@
-// Helper function to update the bar based on state
 const vscode = require("vscode");
 const env = require("./Config");
 
@@ -11,15 +10,17 @@ function checkStatus(statusBar) {
       statusBar.tooltip = "Click to configure MongoDB URI";
       // Highlight with a warning color
       statusBar.backgroundColor = new vscode.ThemeColor(
-        "statusBarItem.warningBackground"
+        "statusBarItem.warningBackground",
       );
       return;
     }
 
-    const isBinaryReady = env.checkBinary(env.CURRENT_VERSION);
-    if (!isBinaryReady) {
-      statusBar.text = "$(cloud-download) TakaTime: Binary Missing";
-      statusBar.tooltip = "Binary missing. Auto-download coming soon.";
+    //  Updated to checkBinaries (plural)
+    const areBinariesReady = env.checkBinaries(env.CURRENT_VERSION);
+    if (!areBinariesReady) {
+      statusBar.text = "$(cloud-download) TakaTime: Binaries Missing";
+      statusBar.tooltip =
+        "Core binaries missing. Please run 'TakaTime: Update Binaries'.";
       statusBar.backgroundColor = undefined; // Reset color
       return;
     }

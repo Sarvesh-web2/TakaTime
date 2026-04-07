@@ -16,7 +16,7 @@ const openInpuToGetMongoUri = async () => {
 
     if (!uri) {
       vscode.window.showWarningMessage(
-        "TakaTime: MONGO_URI is required to proceed."
+        "TakaTime: MONGO_URI is required to proceed.",
       );
       return null;
     }
@@ -26,18 +26,18 @@ const openInpuToGetMongoUri = async () => {
       return null;
     }
     //regex to verfify local and hosted mongo uris
-    const mongoUriRegex = /^(mongodb(?:\+srv)?):\/\/(.*):(.*)@(.*?)(\/.*)?$/;
+    const mongoUriRegex = /^(mongodb(?:\+srv)?):\/\/.+/;
     if (!mongoUriRegex.test(uri)) {
       vscode.window.showErrorMessage("TakaTime: Invalid MongoDB URI format.");
       return null;
     }
     addUriToConfig(uri, configPath);
     vscode.window.showInformationMessage(
-      "TakaTime: MONGO_URI saved. Please restart VSCode to continue."
+      "TakaTime: MONGO_URI saved. Please restart VSCode to continue.",
     );
   } catch (err) {
     vscode.window.showErrorMessage(
-      `TakaTime: Error getting MONGO_URI: ${err.message}`
+      `TakaTime: Error getting MONGO_URI: ${err.message}`,
     );
     return null;
   }
@@ -50,11 +50,11 @@ const addUriToConfig = (uri, configPath) => {
     config.MONGO_URI = uri;
     fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
     vscode.window.showInformationMessage(
-      "TakaTime: MONGO_URI saved to config."
+      "TakaTime: MONGO_URI saved to config.",
     );
   } catch (err) {
     vscode.window.showErrorMessage(
-      `TakaTime: Failed to update config: ${err.message}`
+      `TakaTime: Failed to update config: ${err.message}`,
     );
   }
 };

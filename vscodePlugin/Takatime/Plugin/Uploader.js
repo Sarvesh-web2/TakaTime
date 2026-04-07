@@ -46,17 +46,20 @@ function spawnProcess(document) {
   const config = env.getConfig();
   if (!config || !config.MONGO_URI) return;
 
-  // 1. Locate Binary
+  // 👉 1. Locate Binary (UPDATED to match the new 'taka-upload' naming convention)
   const homeDir = os.homedir();
   const isWin = process.platform === "win32";
-  const binName = isWin
-    ? `taka-uploader-${config.VERSION}.exe`
-    : `taka-uploader-${config.VERSION}`;
+  const ext = isWin ? ".exe" : "";
+
+  // Notice: 'taka-upload', not 'taka-uploader'!
+  const binName = `taka-upload-${env.CURRENT_VERSION}${ext}`;
 
   const binaryPath = path.join(homeDir, ".takatime", "bin", binName);
 
   if (!fs.existsSync(binaryPath)) {
-    console.warn("TakaTime: Binary not found, skipping upload.");
+    console.warn(
+      `TakaTime: Binary not found at ${binaryPath}, skipping upload.`,
+    );
     return;
   }
 

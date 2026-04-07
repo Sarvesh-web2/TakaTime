@@ -33,6 +33,10 @@
       {
         "command": "takatime.setup",
         "title": "TakaTime: Setup MongoDB URI"
+      },
+      {
+        "command": "takatime.showDashboard",
+        "title": "TakaTime: Open Dashboard"
       }
     ]
   },
