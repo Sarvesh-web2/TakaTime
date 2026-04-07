@@ -31,20 +31,20 @@ async function runSetup(statusBar) {
 
   try {
     fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 4));
-    vscode.window.showInformationMessage("Configuration Saved! ✅");
+    vscode.window.showInformationMessage("Configuration Saved!");
   } catch (e) {
     vscode.window.showErrorMessage("Failed to save config");
     return;
   }
 
   // Check & Download Binary
-  const isBinaryReady = env.checkBinary(newConfig.VERSION);
+  const isBinaryReady = env.checkBinaries(newConfig.VERSION);
   if (!isBinaryReady) {
     try {
-      const success = await downloader.downloadBinary(newConfig.VERSION);
+      const success = await downloader.ensureBinaries(newConfig.VERSION);
       if (success) {
         vscode.window.showInformationMessage(
-          `TakaTime ${newConfig.VERSION} installed successfully! 🚀`
+          `TakaTime ${newConfig.VERSION} installed successfully! You can start coding to see it in action.`,
         );
       }
     } catch (err) {
