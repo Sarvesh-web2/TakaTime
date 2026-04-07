@@ -1,9 +1,15 @@
 local M = {}
 local config = require("taka-time.config")
 
-function M.get_binary_path()
+---@enum BinaryEnum
+M.BinaryEnum = {
+	UPLOAD = "taka-upload",
+	DASHBOARD = "taka-dashboard",
+}
+
+function M.get_binary_path(binary)
 	local plugin_root = vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ":h:h:h")
-	local bin_path = plugin_root .. "/taka-upload"
+	local bin_path = plugin_root .. "/" .. binary
 
 	local os_name = vim.loop.os_uname().sysname:lower()
 	if string.match(os_name, "windows") ~= nil then
@@ -11,11 +17,6 @@ function M.get_binary_path()
 	end
 
 	return bin_path
-end
-
-function M.get_binary_path_dahboard()
-	local plugin_root = vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ":h:h:h")
-	return plugin_root .. "/taka-dashboard"
 end
 
 function M.get_version_file_path()
@@ -68,8 +69,9 @@ end
 --------------------------------------------------------------------------------------------
 ---binary downloads
 --------------------------------------------------------------------------------------------
-function M.ensure_binary()
-	local bin_path = M.get_binary_path()
+
+function M.ensure_binary(binary)
+	local bin_path = M.get_binary_path(binary)
 	local target_ver = config.options.binary_version
 	local current_ver = M.get_installed_version()
 
@@ -80,7 +82,7 @@ function M.ensure_binary()
 
 	-- 2. Update logic
 	if current_ver and current_ver ~= target_ver then
-		print(string.format("[Taka] Updating %s -> %s...", current_ver, target_ver))
+		print(string.format("[Taka] Updating %s %s -> %s...", binary, current_ver, target_ver))
 	end
 
 	local os_name, arch = get_os_info()
@@ -88,12 +90,15 @@ function M.ensure_binary()
 		print("[Taka] Auto-install not supported for this OS.")
 		return
 	end
+	local ext = os_name == "windows" and ".exe" or ""
 
 	local url = string.format(
-		"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/taka-upload-%s-%s",
+		"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/%s-%s-%s%s",
 		target_ver,
+		binary,
 		os_name,
-		arch
+		arch,
+		ext
 	)
 
 	-- 3. Delete old binary and download new one
@@ -101,58 +106,16 @@ function M.ensure_binary()
 		os.remove(bin_path)
 	end
 
-	print("[Taka] Downloading " .. target_ver .. "...")
+	print("[Taka] Downloading " .. binary .. " " .. target_ver .. "...")
 	vim.fn.system({ "curl", "-L", "-o", bin_path, url })
-	vim.fn.system({ "chmod", "+x", bin_path })
+	if os_name ~= "windows" then
+		vim.fn.system({ "chmod", "+x", bin_path })
+	end
 
 	-- 4. Update version file
 	M.write_installed_version(target_ver)
-	print("[Taka] Successfully installed " .. target_ver)
+	print("[Taka] Successfully installed " .. binary .. " " .. target_ver)
 end
-
-function M.ensure_binary_dashboard()
-	local bin_path = M.get_binary_path_dahboard()
-	local target_ver = config.options.binary_version
-	local current_ver = M.get_installed_version()
-
-	-- 1. Check if we are already up to date
-	if vim.fn.filereadable(bin_path) == 1 and current_ver == target_ver then
-		return
-	end
-
-	-- 2. Update logic
-	if current_ver and current_ver ~= target_ver then
-		print(string.format("[Taka] Updating %s -> %s...", current_ver, target_ver))
-	end
-
-	local os_name, arch = get_os_info()
-	if not os_name then
-		print("[Taka] Auto-install not supported for this OS.")
-		return
-	end
-
-	local url = string.format(
-		"https://github.com/Rtarun3606k/TakaTime/releases/download/%s/taka-dashboard-%s-%s",
-		target_ver,
-		os_name,
-		arch
-	)
-
-	-- 3. Delete old binary and download new one
-	if vim.fn.filereadable(bin_path) == 1 then
-		os.remove(bin_path)
-	end
-
-	print("[Taka] Downloading " .. target_ver .. "...")
-	vim.fn.system({ "curl", "-L", "-o", bin_path, url })
-	vim.fn.system({ "chmod", "+x", bin_path })
-
-	-- 4. Update version file
-	M.write_installed_version(target_ver)
-	print("[Taka] Successfully installed " .. target_ver)
-end
-
-
 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
