@@ -38,6 +38,7 @@ function M.setup(opts)
   vim.api.nvim_create_user_command("TakaDash", function()
     -- 1. Ensure the user has actually configured their URI
     local uri = config.options.mongo_uri
+    print("[debug] URI=" .. uri)
     if not uri or uri == "" then
       print("TakaTime: Missing MongoDB URI. Please run :TakaInit first!")
       return
