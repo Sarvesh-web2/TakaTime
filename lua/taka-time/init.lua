@@ -38,7 +38,6 @@ function M.setup(opts)
   vim.api.nvim_create_user_command("TakaDash", function()
     -- 1. Ensure the user has actually configured their URI
     local uri = config.options.mongo_uri
-    print("[debug] URI=" .. uri)
     if not uri or uri == "" then
       print("TakaTime: Missing MongoDB URI. Please run :TakaInit first!")
       return
@@ -73,7 +72,7 @@ function M.setup(opts)
     -- 5. Construct the command and launch the terminal!
     -- NOTE: Make sure 'taka-dash' is either in your system PATH,
     -- or provide the absolute path to the binary here.
-    local cmd = string.format("%s --MongoDBString '%s'", bin_path, uri)
+    local cmd = string.format("%s --MongoDBString \"%s\"", bin_path, uri)
 
     vim.fn.jobstart(cmd, {
       term = true,
