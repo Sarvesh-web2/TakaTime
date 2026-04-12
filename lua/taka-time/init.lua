@@ -74,7 +74,8 @@ function M.setup(opts)
     -- or provide the absolute path to the binary here.
     local cmd = string.format("%s --MongoDBString '%s'", bin_path, uri)
 
-    vim.fn.termopen(cmd, {
+    vim.fn.jobstart(cmd, {
+      term = true,
       on_exit = function()
         -- When you press 'q' or 'esc' in the dashboard, it exits the Go binary.
         -- This hook automatically closes the Neovim floating window behind it!
