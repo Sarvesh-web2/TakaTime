@@ -13,6 +13,13 @@ import (
 
 // Add 'showAll bool' to the end of the parameters
 func buildStatsList(title string, stats []types.ListStats, styles Styles.AppStyles, width int, showAll bool) string {
+	var cleanStats []types.ListStats
+	for _, stat := range stats {
+		if strings.ToLower(stat.Label) != "unknown" {
+			cleanStats = append(cleanStats, stat)
+		}
+	}
+	stats = cleanStats
 	if len(stats) == 0 {
 		return ""
 	}
