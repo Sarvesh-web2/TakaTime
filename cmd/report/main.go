@@ -159,7 +159,7 @@ func main() {
 			log.Println("Lang Error:", err)
 		}
 
-		editors, err := dbqueryv2.GetListStats(client, "editor", 3, theme, 0)
+		editors, err := dbqueryv2.GetListStats(client, "editor", 4, theme, 0)
 		if err != nil {
 			log.Println("Editor Error:", err)
 		}

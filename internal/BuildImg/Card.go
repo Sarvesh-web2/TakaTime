@@ -155,7 +155,7 @@ func DrawTimeCard(data types.TimeGridStruct, fontData []byte, updatedAt time.Tim
 
 // 3. TECH STACK CARD -> BIGGER FONTS (High Visibility)
 func DrawTechCard(editors []types.ListStats, osSystems []types.ListStats, fontData []byte, updatedAt time.Time, theme types.ThemeConfig) (image.Image, error) {
-	W, H := 1600, 400
+	W, H := 1600, 500
 	dc := gogist.SetupContext(W, H, theme)
 
 	if err := DrawHeader(dc, "Environment Stats", fontData, theme, 42); err != nil {
