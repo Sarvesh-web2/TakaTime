@@ -5,6 +5,25 @@ All notable changes to the **TakaTime** project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
+### [2.2.2] -Release v2.2.2 (The Antigravity Patch)
+
+This minor patch cleans up how the dashboard processes background data, officially making room to display new editors!
+
+### What's New
+* **Antigravity Tracking Supported:** The dashboard now properly displays time tracked in the `antigravity` editor!
+* **Data Cleanup:** Filtered out `unknown` editor data from the local UI, ensuring your actual top editors accurately claim their spots on the leaderboard.
+
+---
+###  How to Install Manually (Using `.vsix`)
+1. **Download the file:** [Click here to download takatime-0.1.1.vsix](https://github.com/Rtarun3606k/TakaTime/releases/download/v2.2.2/takatime-0.1.1.vsix) directly.
+3. **Install from VSIX:** Click the **...** (three dots/gear icon) at the top right of the Extensions panel and select **"Install from VSIX..."**.
+4. **Select the file:** Locate and select the `.vsix` file you just downloaded.
+5. **Configure Database:** Once installed, run the `TakaTime: Setup` command (or click the status bar) and enter your MongoDB Connection String.
+
+---
+
 ## [2.2.0] - 2026-04-09
 
 ### New Features
