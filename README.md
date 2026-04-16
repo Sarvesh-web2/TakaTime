@@ -114,14 +114,14 @@ TakaTime now includes a fully interactive, terminal-based dashboard directly ins
 
 TakaTime is built to be cross-platform and editor-agnostic. Both plugins share the same core Go binaries, ensuring a consistent experience.
 
-| Feature | Neovim | VS Code | OS Support |
-| :--- | :--- | :--- | :--- |
-| **Background Uploader** | ✓ Supported | ✓ Supported | Windows, macOS, Linux |
-| **Interactive Dashboard** | ✓ Supported | ✓ Supported | Windows, macOS, Linux |
-| **Profile Stats Reporter** | ✓ Supported | ✓ Supported | Windows, macOS, Linux |
-| **Privacy Controls** | ✓ Supported (`.takaignore`, `.takatrack`) | ⚙ Planned (Future Release) | All OS |
+| Feature | Neovim | VS Code | Antigravity | OS Support |
+| :--- | :--- | :--- | :--- | :--- |
+| **Background Uploader** | ✓ Supported | ✓ Supported |✓ Supported | Windows, macOS, Linux |
+| **Interactive Dashboard** | ✓ Supported | ✓ Supported | ✓ Supported | Windows, macOS, Linux |
+| **Profile Stats Reporter** | ✓ Supported | ✓ Supported |✓ Supported | Windows, macOS, Linux |
+| **Privacy Controls** | ✓ Supported (`.takaignore`, `.takatrack`) | ⚙ Planned (Future Release) |⚙ Planned (Future Release) | All OS |
 
-*(Note: Privacy controls for VS Code are currently in active development and will be rolling out soon!)*
+*(Note: Privacy controls for VS Code and Antigravity are currently in active development and will be rolling out soon!)*
 
 ---
 
