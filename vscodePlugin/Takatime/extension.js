@@ -64,6 +64,19 @@ async function activate(context) {
 
   context.subscriptions.push(saveListener);
 
+  // 3b. Notebook Save Listener (.ipynb files)
+  const notebookSaveListener = vscode.workspace.onDidSaveNotebookDocument((notebook) => {
+    // Construct a minimal document-like object so handleHeartbeat works unchanged
+    const mockDocument = {
+      fileName: notebook.uri.fsPath,
+      uri: notebook.uri,
+      languageId: "jupyter-notebook"
+    };
+    heartbeat.handleHeartbeat(mockDocument);
+  });
+
+  context.subscriptions.push(notebookSaveListener);
+
   // 4. Initial Check
   statusHelper.checkStatus(statusBar);
 }
