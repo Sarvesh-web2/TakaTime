@@ -1,6 +1,7 @@
 // Plugin/HeartBeat.js
 const uploader = require("./Uploader");
-const vscode = require("vscode");
+
+/** @typedef {import('vscode').TextDocument} TextDocument */
 
 // Last heartbeat timestamp (ms), shared globally across all files
 let lastHeartbeatTime = 0;
@@ -11,7 +12,7 @@ const COOLDOWN_MS = 120 * 1000;
 /**
  * Handles the "Heartbeat" logic.
  * Decides if we should actually call the binary or just ignore the event.
- * @param {vscode.TextDocument} document
+ * @param {TextDocument} document
  */
 function handleHeartbeat(document) {
   const now = Date.now();
