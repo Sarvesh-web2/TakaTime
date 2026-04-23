@@ -73,7 +73,7 @@ async function activate(context) {
     if (document.fileName.includes(path.sep + ".git" + path.sep)) return;
     if (event.contentChanges.length === 0) return; // ignore no-op changes
 
-    heartbeat.handleHeartbeat(document); 
+    heartbeat.handleHeartbeat(document);
   });
 
   context.subscriptions.push(typingListener);

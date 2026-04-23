@@ -61,7 +61,7 @@ function spawnProcess(document) {
     console.warn(
       `TakaTime: Binary not found at ${binaryPath}, skipping upload.`,
     );
-    return;
+    return false;
   }
 
   // 2. Spawn (Fire & Forget)
@@ -79,8 +79,10 @@ function spawnProcess(document) {
     });
     child.unref();
     console.log(`TakaTime: Uploading ${path.basename(document.fileName)}...`);
+    return true;
   } catch (err) {
     console.error("TakaTime: Failed to spawn process", err);
+    return false;
   }
 }
 

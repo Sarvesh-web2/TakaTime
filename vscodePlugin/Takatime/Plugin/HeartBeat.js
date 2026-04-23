@@ -1,8 +1,8 @@
-// Plugin/Heartbeat.js
+// Plugin/HeartBeat.js
 const uploader = require("./Uploader");
 const vscode = require("vscode");
 
-// Key: File Path, Value: Last Timestamp (ms)
+// Last heartbeat timestamp (ms), shared globally across all files
 let lastHeartbeatTime = 0;
 
 // ⏳ THE COOLDOWN (Standard is 2 minutes)
@@ -14,16 +14,15 @@ const COOLDOWN_MS = 120 * 1000;
  * @param {vscode.TextDocument} document
  */
 function handleHeartbeat(document) {
-  const filePath = document.fileName;
   const now = Date.now();
   
   // 1. Check Cooldown
   if (now - lastHeartbeatTime < COOLDOWN_MS) return;
 
-  // 2. Fire the Upload
-  uploader.spawnProcess(document);
+  // 2. Fire the Upload - returns if failed
+  if (!uploader.spawnProcess(document)) return;
 
-  // 3. Reset the Timer
+  // 3. Reset the Timer 
   lastHeartbeatTime = now;
 }
 
