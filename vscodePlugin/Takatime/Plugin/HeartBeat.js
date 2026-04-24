@@ -1,9 +1,10 @@
-// Plugin/Heartbeat.js
+// Plugin/HeartBeat.js
 const uploader = require("./Uploader");
-const vscode = require("vscode");
 
-// Key: File Path, Value: Last Timestamp (ms)
-const fileTimestamps = new Map();
+/** @typedef {import('vscode').TextDocument} TextDocument */
+
+// Last heartbeat timestamp (ms), shared globally across all files
+let lastHeartbeatTime = 0;
 
 // ⏳ THE COOLDOWN (Standard is 2 minutes)
 const COOLDOWN_MS = 120 * 1000;
@@ -11,26 +12,19 @@ const COOLDOWN_MS = 120 * 1000;
 /**
  * Handles the "Heartbeat" logic.
  * Decides if we should actually call the binary or just ignore the event.
- * @param {vscode.TextDocument} document
+ * @param {TextDocument} document
  */
 function handleHeartbeat(document) {
-  const filePath = document.fileName;
   const now = Date.now();
-  const lastSaved = fileTimestamps.get(filePath) || 0;
+  
+  // 1. Check Cooldown
+  if (now - lastHeartbeatTime < COOLDOWN_MS) return;
 
-  // 1. Check Debounce/Throttle
-  // If it hasn't been 2 mins since the last ping for THIS file...
-  if (now - lastSaved < COOLDOWN_MS) {
-    // ... We skip it. (Optional: Log it for debugging)
-    // console.log("TakaTime: Debounced (Skipped)");
-    return;
-  }
+  // 2. Fire the Upload - returns if failed
+  if (!uploader.spawnProcess(document)) return;
 
-  // 2. Fire the Upload
-  uploader.spawnProcess(document);
-
-  // 3. Reset the Timer for this file
-  fileTimestamps.set(filePath, now);
+  // 3. Reset the Timer 
+  lastHeartbeatTime = now;
 }
 
 module.exports = { handleHeartbeat };
