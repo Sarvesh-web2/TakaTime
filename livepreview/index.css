@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap");
+
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+.dummy-card {
+  font-family: "JetBrains Mono", monospace;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  .dummy-card {
+    padding: 2.5rem;
+  }
+}
+
+.progress-bar-container {
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 0 10px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  min-width: 40px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+  transition: width 1s ease-in-out;
+}
+
+.color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 100%;
+  height: 38px;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid #30363d;
+  border-radius: 4px;
+}
+
+.canvas-bg {
+  background-color: #010409;
+  background-image: radial-gradient(#30363d 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* NAVBAR */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+}
+.logo {
+  font-weight: 700;
+  color: #39ff14;
+  font-size: 20px;
+}
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.nav-links a {
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 14px;
+}
+.version-pill {
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero h1 {
+  font-size: 42px;
+  color: white;
+  text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+}
+.hero p {
+  max-width: 700px;
+  margin: 20px auto;
+  color: #8b949e;
+}
+.cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-primary {
+  background: #238636;
+  color: white;
+}
+.btn-secondary {
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+}
+
+/* SECTIONS */
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* FEATURES */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+/* CTA */
+.prefooter {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #30363d;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  font-size: 14px;
+  color: #8b949e;
+}
+
+/* ANIMATION */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

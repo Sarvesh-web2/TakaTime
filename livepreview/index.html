@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TakaTime Stats Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Rtarun3606k/TakaTime/main/public/TakatimeLogo.png" />
+  </head>
+  <body class="bg-bg text-gray-300 font-sans scroll-smooth">
+    <!-- NAVBAR -->
+    <header
+      class="sticky top-0 z-50 bg-bg/80 backdrop-blur border-b border-border"
+    >
+      <div
+        class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4"
+      >
+   <div class="flex items-center gap-3">
+  <img 
+    src="https://raw.githubusercontent.com/Rtarun3606k/TakaTime/main/public/TakatimeLogo.png" 
+    alt="TakaTime Logo" 
+    class="w-8 h-8 md:w-10 md:h-10 object-contain"
+  />
+  <h1 class="text-lg md:text-xl font-bold text-neon tracking-wide">
+    TakaTime
+  </h1>
+</div>
+        <div class="flex items-center gap-6 text-sm">
+          <a
+            href="https://github.com/Rtarun3606k/TakaTime/wiki"
+            class="hover:text-white"
+            >Wiki</a
+          >
+          <a
+            href="https://github.com/Rtarun3606k/TakaTime"
+            class="hover:text-white"
+            >GitHub</a
+          >
+          <span class="px-3 py-1 border border-border rounded-full text-xs"
+            >v2.2.4</span
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="text-center py-20 px-6">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_0_20px_rgba(57,255,20,0.3)]"
+      >
+        The Open Source, Self-Hosted WakaTime Alternative.
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-gray-400">
+        Time is what we want most, but what we use worst. Own your coding
+        telemetry with zero latency and absolute privacy.
+      </p>
+
+      <div class="mt-6 flex justify-center gap-3 flex-wrap">
+        <img src="https://img.shields.io/github/stars/Rtarun3606k/TakaTime" />
+        <img src="https://img.shields.io/badge/license-MIT-green" />
+        <img src="https://img.shields.io/badge/downloads-total-blue" />
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://github.com/Rtarun3606k/TakaTime"
+          class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded-lg text-white font-semibold"
+        >
+          View on GitHub
+        </a>
+        <a href="https://github.com/Rtarun3606k/TakaTime/wiki" class="border border-border px-6 py-3 rounded-lg">
+          Read the Docs
+        </a>
+      </div>
+    </section>
+
+    <main
+      class="flex-1 flex flex-col xl:flex-row gap-6 p-4 md:p-6 lg:p-10 max-w-[1800px] w-full mx-auto"
+      style="max-width: 100vw"
+    >
+      <aside
+        class="w-full xl:w-[350px] 2xl:w-[400px] flex-shrink-0 animate-slide-up delay-100"
+      >
+        <div
+          class="bg-[#161b22] rounded-xl border border-[#30363d] p-4 md:p-6 shadow-2xl space-y-6 sticky top-24"
+        >
+          <div>
+            <h3
+              class="text-lg font-semibold text-gray-100 mb-4 border-b border-[#30363d] pb-2 flex items-center justify-between"
+            >
+              Configuration
+              <svg
+                class="w-4 h-4 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+            </h3>
+            <label class="block text-sm font-medium text-gray-300 mb-1.5 mt-4"
+              >Base Theme</label
+            >
+            <select
+              id="theme"
+              class="w-full bg-[#0d1117] border border-[#30363d] rounded-lg p-2.5 text-sm text-gray-200 outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 transition-all cursor-pointer"
+            >
+              <option value="dark">Dark (Default)</option>
+              <option value="light">Light</option>
+              <option value="dracula">Dracula</option>
+              <option value="nord">Nord</option>
+              <option value="gruvbox">Gruvbox</option>
+              <option value="monokai">Monokai</option>
+              <option value="cyberpunk">Cyberpunk</option>
+              <option value="tokyonight">Tokyo Night</option>
+              <option value="everforest">Everforest</option>
+              <option value="iceberg">Iceberg</option>
+              <option value="sunset">Sunset</option>
+              <option value="deepocean">Deep Ocean</option>
+              <option value="midnightpurple">Midnight Purple</option>
+              <option value="catppuccin">Catppuccin</option>
+              <option value="solarized">Solarized Dark</option>
+              <option value="onedark">OneDark Pro</option>
+              <option value="material">Material Dark</option>
+              <option value="synthwave">Synthwave</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-3"
+              >Color Overrides</label
+            >
+            <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-3">
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="bg" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Background</span
+                >
+              </div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="text" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Text</span
+                >
+              </div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input
+                  type="color"
+                  id="subtext"
+                  class="w-8 h-8 flex-shrink-0"
+                />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Subtext</span
+                >
+              </div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="barbg" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Bar BG</span
+                >
+              </div>
+              <div
+                class="col-span-2 md:col-span-4 xl:col-span-2 pt-2 border-t border-[#30363d]"
+              ></div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="c1" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Color 1</span
+                >
+              </div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="c2" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Color 2</span
+                >
+              </div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="c3" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Color 3</span
+                >
+              </div>
+              <div
+                class="bg-[#0d1117] border border-[#30363d] rounded-lg p-1.5 flex items-center gap-2"
+              >
+                <input type="color" id="c4" class="w-8 h-8 flex-shrink-0" />
+                <span class="text-xs font-medium text-gray-400 truncate"
+                  >Color 4</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <label class="block text-sm font-medium text-gray-300 mb-2"
+              >CLI Command</label
+            >
+            <div class="relative group">
+              <textarea
+                id="output"
+                readonly
+                class="w-full h-24 bg-[#010409] border border-[#30363d] rounded-lg p-3 text-xs font-mono text-green-400 focus:outline-none focus:border-green-500 shadow-inner resize-none"
+              ></textarea>
+            </div>
+            <button
+              id="copyBtn"
+              class="mt-3 w-full bg-[#238636] hover:bg-[#2ea043] border border-[rgba(240,246,252,0.1)] text-white font-semibold py-2.5 rounded-lg text-sm transition-all shadow-sm flex items-center justify-center gap-2"
+            >
+              <svg
+                class="w-4 h-4"
+                id="copyIcon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <span id="copyBtnText">Copy Command</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <section
+        class="flex-1 flex flex-col min-w-0 w-full animate-slide-up delay-200"
+      >
+        <div class="flex items-center justify-between mb-4 px-2">
+          <h2
+            class="text-xl font-semibold text-gray-200 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              ></path>
+            </svg>
+            Live Preview
+          </h2>
+        </div>
+
+        <div
+          class="canvas-bg w-full rounded-xl border border-[#30363d] p-4 md:p-8 flex justify-start lg:justify-center min-h-[500px] overflow-x-auto overflow-y-hidden shadow-inner relative font-mono text-sm leading-tight"
+        >
+          <div
+            id="dummyCard"
+            class="dummy-card flex flex-col pt-4 px-4 pb-2"
+            style="min-width: 650px; width: 100%; max-width: 900px"
+          >
+            <h2
+              id="cardTitle"
+              class="text-center text-xl md:text-2xl font-bold mb-8 transition-colors duration-300 tracking-wider"
+            >
+              Rtarun3606k's Coding Activity
+            </h2>
+
+            <div class="grid grid-cols-4 gap-4 mb-4 text-left">
+              <div class="px-2">
+                <div class="card-subtext mb-2 font-medium">Yesterday</div>
+                <div
+                  class="card-text text-xl font-bold var-c1 transition-colors duration-300"
+                >
+                  11m
+                </div>
+              </div>
+              <div class="px-2">
+                <div class="card-subtext mb-2 font-medium">Last 7 Days</div>
+                <div
+                  class="card-text text-xl font-bold var-c2 transition-colors duration-300"
+                >
+                  3h 24m
+                </div>
+              </div>
+              <div class="px-2">
+                <div class="card-subtext mb-2 font-medium">Last 30 Days</div>
+                <div
+                  class="card-text text-xl font-bold var-c3 transition-colors duration-300"
+                >
+                  7h 21m
+                </div>
+              </div>
+              <div class="px-2">
+                <div class="card-subtext mb-2 font-medium">All Time</div>
+                <div
+                  class="card-text text-xl font-bold var-c4 transition-colors duration-300"
+                >
+                  52h 24m
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="text-right text-[10px] card-subtext mb-6 mt-2 font-medium px-2 opacity-50"
+            >
+              Last Updated: 2026-05-04 01:47:55
+            </div>
+
+            <div
+              class="grid grid-cols-2 gap-x-12 gap-y-8 mb-8 w-full overflow-hidden px-2"
+            >
+              <div class="">
+                <h3
+                  class="var-c1 text-base mb-3 font-semibold pb-1 transition-colors duration-300 truncate text-center"
+                >
+                  Top Language - Last 30 Days
+                </h3>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >go</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >3h 32m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="44.8%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >44.8%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >lua</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >54m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c2 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="11.5%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >11.5%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >javascri..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >38m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c3 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="8.0%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >8.0%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >json</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >34m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c4 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="7.3%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >7.3%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >py</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >21m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%; opacity: 0.8"
+                      data-width="4.5%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >4.5%</span
+                  >
+                </div>
+              </div>
+
+              <div class="">
+                <h3
+                  class="var-c2 text-base mb-3 font-semibold pb-1 transition-colors duration-300 truncate text-center"
+                >
+                  Top Projects - Last 30 Days
+                </h3>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >lb4a</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >3h 3m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="40.5%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >40.5%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >taka-tim..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >2h 0m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c2 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="26.6%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >26.6%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >Takatime</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >43m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c3 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="9.7%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >9.7%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >BlockCna..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >33m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c4 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="7.3%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >7.3%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >client2</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >21m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%; opacity: 0.8"
+                      data-width="4.7%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >4.7%</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <h3
+                  class="var-c1 text-base mb-3 font-semibold pb-1 transition-colors duration-300 truncate text-center"
+                >
+                  Top Languages - All Time
+                </h3>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >go</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >31h 42m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="36.8%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >36.8%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >lua</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >12h 17m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c2 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="14.2%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >14.2%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >html</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >6h 23m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c3 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="7.4%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >7.4%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >py</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >6h 2m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c4 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="7.0%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >7.0%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >text</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >6h 1m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%; opacity: 0.8"
+                      data-width="7.0%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >7.0%</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <h3
+                  class="var-c2 text-base mb-3 font-semibold pb-1 transition-colors duration-300 truncate text-center"
+                >
+                  Top Projects - All Time
+                </h3>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >taka-tim..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >31h 46m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="37.5%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >37.5%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >dragoon</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >5h 19m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c2 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="6.3%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >6.3%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >markdown..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >5h 12m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c3 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="6.2%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >6.2%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >hello_wo..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >5h 11m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c4 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="6.1%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >6.1%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >StorageEn..</span
+                  ><span
+                    class="w-[60px] card-subtext text-right transition-colors duration-300 mr-3"
+                    >5h 8m</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%; opacity: 0.8"
+                      data-width="6.1%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300 ml-2"
+                    >6.1%</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 mb-4 text-center">
+              <h2
+                class="relative bg-transparent px-4 text-xl font-bold var-c1 transition-colors duration-300 z-10 card-bg-match text-center inline-block"
+              >
+                Environment Stats
+              </h2>
+            </div>
+
+            <div
+              class="grid grid-cols-2 gap-x-12 gap-y-8 mb-4 w-full overflow-hidden px-2 pb-6"
+            >
+              <div class="">
+                <h3
+                  class="var-c1 text-base mb-3 font-semibold pb-1 transition-colors duration-300 truncate text-center"
+                >
+                  Editors
+                </h3>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >NeoVim</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1 mr-3"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="77%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300"
+                    >77%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >VsCode</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1 mr-3"
+                  >
+                    <div
+                      class="progress-bar-fill card-c2 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="21%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300"
+                    >21%</span
+                  >
+                </div>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >Antigravity</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1 mr-3"
+                  >
+                    <div
+                      class="progress-bar-fill card-c3 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="0%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300"
+                    >0%</span
+                  >
+                </div>
+              </div>
+
+              <div class="">
+                <h3
+                  class="var-c1 text-base mb-3 font-semibold pb-1 transition-colors duration-300 truncate text-center"
+                >
+                  Operating Systems
+                </h3>
+                <div class="flex items-center mb-1.5">
+                  <span
+                    class="w-[65px] card-text transition-colors duration-300 truncate font-semibold"
+                    >linux</span
+                  >
+                  <div
+                    class="progress-bar-container card-bar-bg transition-colors duration-300 flex-1 mr-3"
+                  >
+                    <div
+                      class="progress-bar-fill card-c1 transition-colors duration-300"
+                      style="width: 0%"
+                      data-width="100%"
+                    ></div>
+                  </div>
+                  <span
+                    class="w-[45px] text-right card-text transition-colors duration-300"
+                    >100%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FEATURES -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <h2 class="text-center text-2xl font-bold mb-12">Why TakaTime?</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-panel border border-border p-6 rounded-xl">
+          <h3 class="font-semibold mb-2">Non-Blocking Architecture</h3>
+          <p class="text-sm text-gray-400">
+            Engineered in Go with async concurrency ensuring zero latency.
+          </p>
+        </div>
+
+        <div class="bg-panel border border-border p-6 rounded-xl">
+          <h3 class="font-semibold mb-2">Privacy-Centric Storage</h3>
+          <p class="text-sm text-gray-400">
+            Stored only in your MongoDB. No tracking.
+          </p>
+        </div>
+
+        <div class="bg-panel border border-border p-6 rounded-xl">
+          <h3 class="font-semibold mb-2">Auto Dependency Setup</h3>
+          <p class="text-sm text-gray-400">
+            Automatically downloads correct binary for your OS.
+          </p>
+        </div>
+
+        <div class="bg-panel border border-border p-6 rounded-xl">
+          <h3 class="font-semibold mb-2">Portfolio Visualization</h3>
+          <p class="text-sm text-gray-400">
+            Generate charts for GitHub README.
+          </p>
+        </div>
+
+        <div class="bg-panel border border-border p-6 rounded-xl">
+          <h3 class="font-semibold mb-2">Granular Telemetry</h3>
+          <p class="text-sm text-gray-400">
+            Tracks languages, projects & file types automatically.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPATIBILITY TABLE -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <h2 class="text-center text-2xl font-bold mb-10">Editor Compatibility</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full border border-border text-sm">
+          <thead class="bg-panel">
+            <tr>
+              <th class="p-3 text-left">Feature</th>
+              <th>Neovim</th>
+              <th>VS Code</th>
+              <th>Antigravity</th>
+              <th>OS</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr class="border-t border-border">
+              <td class="p-3 text-left">Background Uploader</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>All</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-3 text-left">Dashboard</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>All</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-3 text-left">Stats Reporter</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>All</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-3 text-left">Privacy Controls</td>
+              <td>✓</td>
+              <td>Planned</td>
+              <td>Planned</td>
+              <td>All</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-4">
+        Privacy controls for VS Code and Antigravity are under development.
+      </p>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="text-center py-20">
+      <h2 class="text-xl font-bold mb-6">Built by the Community</h2>
+
+      <a
+        class="justify-center flex"
+        href="https://github.com/Rtarun3606k/TakaTime/graphs/contributors"
+      >
+        <img src="https://contrib.rocks/image?repo=Rtarun3606k/TakaTime" />
+      </a>
+
+      <p class="mt-4 text-gray-400">
+        Contributions welcome. See CONTRIBUTING.md
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-20">
+      <h2 class="text-2xl font-bold mb-6">Ready to take back your time?</h2>
+      <button
+        class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded-lg"
+        onclick="
+          window.location.href = 'https://github.com/Rtarun3606k/TakaTime'"
+        "
+      >
+        Install TakaTime Now
+      </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="border-t border-border py-6 px-6 flex flex-col md:flex-row justify-between text-sm text-gray-500"
+    >
+      <span>Built with ❤️ by Tarun and the TakaTime Community.</span>
+      <div class="flex gap-4 justify-center mt-2 md:mt-0">
+        <a href="https://github.com/Rtarun3606k/TakaTime/issues">Issue</a>
+        <a href="https://github.com/Rtarun3606k/TakaTime/discussions"
+          >Discussions</a
+        >
+        <a href="https://github.com/sponsors/Rtarun3606k">Sponsor</a>
+      </div>
+    </footer>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#0d1117",
+              panel: "#161b22",
+              border: "#30363d",
+              neon: "#39ff14",
+            },
+          },
+        },
+      };
+    </script>
+
+    <script src="index.js"></script>
+  </body>
+</html>
