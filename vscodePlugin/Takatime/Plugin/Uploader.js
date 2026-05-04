@@ -34,8 +34,8 @@ function getGoArgs(document, mongoUri) {
     "-duration",
     "120", // Sending a default heartbeat duration (optional, fixes "less than 0" error)
     "-editor",
-    "VsCode",
-    // "Antigravity",
+    // "VsCode",
+    "Antigravity",
   ];
 }
 
