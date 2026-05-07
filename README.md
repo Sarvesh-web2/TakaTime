@@ -17,6 +17,7 @@
   <a href="https://github.com/Rtarun3606k/TakaTime/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/Rtarun3606k/TakaTime?style=for-the-badge&color=blue" alt="License">
   </a>
+![Downloads](https://img.shields.io/github/downloads/rtarun3606k/Takatime/total?style=for-the-badge&color=blue&logo=github)
 
   <br>
 
