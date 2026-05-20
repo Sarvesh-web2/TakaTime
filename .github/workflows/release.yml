@@ -23,24 +23,24 @@ jobs:
       # --- BUILD TAKA-UPLOAD (For VS Code & Lua Plugin) ---
       - name: Build Taka-Upload
         run: |
-          env GOOS=linux GOARCH=amd64 go build -o taka-upload-linux-amd64 cmd/upload/main.go
-          env GOOS=darwin GOARCH=amd64 go build -o taka-upload-darwin-amd64 cmd/upload/main.go
-          env GOOS=darwin GOARCH=arm64 go build -o taka-upload-darwin-arm64 cmd/upload/main.go
-          env GOOS=windows GOARCH=amd64 go build -o taka-upload-windows-amd64.exe cmd/upload/main.go
+          env GOOS=linux GOARCH=amd64 go build  -trimpath -ldflags="-s -w -buildid=" -o taka-upload-linux-amd64 cmd/upload/main.go
+          env GOOS=darwin GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-upload-darwin-amd64 cmd/upload/main.go
+          env GOOS=darwin GOARCH=arm64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-upload-darwin-arm64 cmd/upload/main.go
+          env GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-upload-windows-amd64.exe cmd/upload/main.go
 
       # --- BUILD TAKA-REPORT (For Stats Generation) ---
       - name: Build Taka-Report
         run: |
-          env GOOS=linux GOARCH=amd64 go build -o taka-report-linux-amd64 cmd/report/main.go
-          env GOOS=darwin GOARCH=amd64 go build -o taka-report-darwin-amd64 cmd/report/main.go
-          env GOOS=darwin GOARCH=arm64 go build -o taka-report-darwin-arm64 cmd/report/main.go
-          env GOOS=windows GOARCH=amd64 go build -o taka-report-windows-amd64.exe cmd/report/main.go
+          env GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-report-linux-amd64 cmd/report/main.go
+          env GOOS=darwin GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-report-darwin-amd64 cmd/report/main.go
+          env GOOS=darwin GOARCH=arm64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-report-darwin-arm64 cmd/report/main.go
+          env GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-report-windows-amd64.exe cmd/report/main.go
       - name: Build Taka-Dashboard
         run: |
-          env GOOS=linux GOARCH=amd64 go build -o taka-dashboard-linux-amd64 ./cmd/dashboard
-          env GOOS=darwin GOARCH=amd64 go build -o taka-dashboard-darwin-amd64 ./cmd/dashboard
-          env GOOS=darwin GOARCH=arm64 go build -o taka-dashboard-darwin-arm64 ./cmd/dashboard
-          env GOOS=windows GOARCH=amd64 go build -o taka-dashboard-windows-amd64.exe ./cmd/dashboard
+          env GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-dashboard-linux-amd64 ./cmd/dashboard
+          env GOOS=darwin GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-dashboard-darwin-amd64 ./cmd/dashboard
+          env GOOS=darwin GOARCH=arm64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-dashboard-darwin-arm64 ./cmd/dashboard
+          env GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o taka-dashboard-windows-amd64.exe ./cmd/dashboard
 
       # --- UPLOAD EVERYTHING ---
       - name: Upload to Release
