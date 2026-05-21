@@ -23,6 +23,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Rtarun3606k/TakaTime/main/public/TakatimeLogo.png" />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/asciinema-player@3.7.1/dist/bundle/asciinema-player.css"
+/>
   </head>
   <body class="bg-bg text-gray-300 font-sans scroll-smooth">
     <!-- NAVBAR -->
@@ -61,7 +65,7 @@
     </header>
 
     <!-- HERO -->
-    <section class="text-center py-20 px-6">
+    <!-- <section class="text-center py-10 px-6">
       <h1
         class="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_0_20px_rgba(57,255,20,0.3)]"
       >
@@ -89,7 +93,103 @@
           Read the Docs
         </a>
       </div>
-    </section>
+    </section> -->
+
+
+<section class="hero-section text-center py-20 px-6">
+  <h1 class="hero-title">
+    The Open Source, Self-Hosted Free WakaTime Alternative.
+  </h1>
+
+  <p class="hero-subtitle">
+    Time is what we want most, but what we use worst.
+    Own your coding telemetry with zero latency and absolute privacy.
+  </p>
+
+  <!-- LIVE STATS -->
+
+  <div class="live-stats">
+
+    <a
+      href="https://github.com/Rtarun3606k/TakaTime"
+      target="_blank"
+      class="stat-card"
+    >
+      <h3 id="stars-count">0+</h3>
+      <p>GitHub Stars</p>
+    </a>
+
+    <a
+      href="https://github.com/Rtarun3606k/TakaTime/releases"
+      target="_blank"
+      class="stat-card"
+    >
+      <h3 id="downloads-count">0+</h3>
+      <p>Total Downloads</p>
+    </a>
+
+    <div class="stat-card">
+      <h3>MIT</h3>
+      <p>Open Source License</p>
+    </div>
+
+  </div>
+
+  
+ 
+
+  <!-- BUTTONS -->
+
+  <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+
+    <a
+      href="https://github.com/Rtarun3606k/TakaTime"
+      class="hero-btn primary-btn"
+    >
+      View on GitHub
+    </a>
+
+    <a
+      href="https://github.com/Rtarun3606k/TakaTime/wiki"
+      class="hero-btn secondary-btn"
+    >
+      Read the Docs
+    </a>
+      <button
+        class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded-lg text-white font-semibold hero-btn hero-btn primary-btn"
+        onclick="
+          window.location.href = 'https://github.com/Rtarun3606k/TakaTime'"
+        "
+      >
+        Install TakaTime Now
+      </button>
+
+  </div>
+</section>
+
+
+
+    <!-- terminal section -->
+<section class="terminal-section">
+  <div class="terminal-wrapper">
+    <div class="terminal-glow"></div>
+
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div id="demo"></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 
     <main
       class="flex-1 flex flex-col xl:flex-row gap-6 p-4 md:p-6 lg:p-10 max-w-[1800px] w-full mx-auto"
@@ -940,7 +1040,7 @@
 
     <!-- FEATURES -->
     <section class="max-w-7xl mx-auto px-6 py-20">
-      <h2 class="text-center text-2xl font-bold mb-12">Why TakaTime?</h2>
+      <h2 class="text-center text-2xl font-bold mb-12 scroll-reveal">Why TakaTime?</h2>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-panel border border-border p-6 rounded-xl">
@@ -980,61 +1080,392 @@
       </div>
     </section>
 
-    <!-- COMPATIBILITY TABLE -->
-    <section class="max-w-7xl mx-auto px-6 py-20">
-      <h2 class="text-center text-2xl font-bold mb-10">Editor Compatibility</h2>
 
-      <div class="overflow-x-auto">
-        <table class="w-full border border-border text-sm">
-          <thead class="bg-panel">
-            <tr>
-              <th class="p-3 text-left">Feature</th>
-              <th>Neovim</th>
-              <th>VS Code</th>
-              <th>Antigravity</th>
-              <th>OS</th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <tr class="border-t border-border">
-              <td class="p-3 text-left">Background Uploader</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>All</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-3 text-left">Dashboard</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>All</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-3 text-left">Stats Reporter</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>All</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-3 text-left">Privacy Controls</td>
-              <td>✓</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>All</td>
-            </tr>
-          </tbody>
-        </table>
+
+    <!-- ========================= -->
+<!-- AVAILABLE EVERYWHERE -->
+<!-- ========================= -->
+
+<section class="platforms-section">
+
+  <div class="section-heading">
+    <p class="section-tag">Cross Platform</p>
+    <h2>Available Across Your Entire Workflow</h2>
+    <p>
+      TakaTime works seamlessly across JetBrains IDEs,
+      VSCode, Neovim, Vim, and Antigravity.
+    </p>
+  </div>
+
+  <!-- TOP PLATFORM CARDS -->
+
+  <div class="top-platforms">
+
+    <!-- VS CODE -->
+
+    <a
+      href="https://marketplace.visualstudio.com/items?itemName=Rtarun3606k.takatime"
+      target="_blank"
+      class="platform-card featured"
+    >
+      <img
+        src="./vs.png"
+        alt=""
+      />
+
+      <div>
+        <h3>VS Code</h3>
+        <p>Full Extension Support</p>
+      </div>
+    </a>
+
+    <!-- NEOVIM -->
+
+    <a
+      href="https://github.com/Rtarun3606k/Takatime"
+      target="_blank"
+      class="platform-card featured"
+    >
+      <img
+        src="https://cdn.simpleicons.org/neovim"
+        alt=""
+      />
+
+      <div>
+        <h3>Neovim</h3>
+        <p>Native Plugin Support</p>
+      </div>
+    </a>
+
+    <!-- VIM -->
+
+    <a
+      href="https://github.com/Rtarun3606k/Takatime"
+      target="_blank"
+      class="platform-card featured"
+    >
+      <img
+        src="https://cdn.simpleicons.org/vim"
+        alt=""
+      />
+
+      <div>
+        <h3>Vim</h3>
+        <p>Classic Vim Integration</p>
+      </div>
+    </a>
+
+    <!-- ANTIGRAVITY -->
+
+<a
+  href="https://github.com/Rtarun3606k/Takatime"
+  target="_blank"
+  class="platform-card featured"
+>
+  <img
+    src="./anti.png"
+    alt="Antigravity"
+  />
+
+  <div>
+    <h3>Antigravity</h3>
+    <p>Terminal Workflow Support</p>
+  </div>
+</a>
+
+  </div>
+
+  <!-- JETBRAINS CARD -->
+
+  <a
+    href="https://plugins.jetbrains.com/plugin/31861-takatime?noRedirect=true"
+    target="_blank"
+    class="jetbrains-card"
+  >
+
+    <div class="jb-header">
+
+      <div class="jb-title">
+        <img
+          src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg"
+          alt=""
+        />
+
+        <div>
+          <h3>JetBrains Marketplace</h3>
+          <p>One Plugin. Entire JetBrains Ecosystem.</p>
+        </div>
       </div>
 
-      <p class="text-center text-sm text-gray-500 mt-4">
-        Privacy controls for VS Code and Antigravity are under development.
-      </p>
-    </section>
+    <div class="jetbrains-widget-wrapper">
+  <div id="jetbrains-widget"></div>
+</div>
+
+    </div>
+
+    <div class="ide-grid">
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA_icon.svg"
+  />
+  <span>IntelliJ IDEA</span>
+</div>
+
+    <div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm_icon.svg"
+  />
+  <span>PyCharm</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm_icon.svg"
+  />
+  <span>WebStorm</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/CLion_icon.svg"
+  />
+  <span>CLion</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/GoLand_icon.svg"
+  />
+  <span>GoLand</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/PhpStorm_icon.svg"
+  />
+  <span>PhpStorm</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/RubyMine_icon.svg"
+  />
+  <span>RubyMine</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/Rider_icon.svg"
+  />
+  <span>Rider</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/DataGrip_icon.svg"
+  />
+  <span>DataGrip</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/Android_Studio_icon.svg"
+  />
+  <span>Android Studio</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/Gateway_icon.svg"
+  />
+  <span>Gateway</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/RustRover_icon.svg"
+  />
+  <span>RustRover</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/DataSpell_icon.svg"
+  />
+  <span>DataSpell</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/MPS_icon.svg"
+  />
+  <span>MPS</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg"
+  />
+  <span>JetBrains Client</span>
+</div>
+
+<div class="ide-item">
+  <img
+    src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg"
+  />
+  <span>Code With Me</span>
+</div>
+
+    </div>
+
+  </a>
+
+</section>
+
+<!-- ========================= -->
+<!-- JETBRAINS WIDGET -->
+<!-- ========================= -->
+
+
+
+    <!-- COMPATIBILITY TABLE -->
+ <section class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+
+  <h2
+    class="text-center text-2xl md:text-4xl font-bold mb-10 scroll-reveal"
+  >
+    Editor Compatibility
+  </h2>
+
+  <!-- DESKTOP TABLE -->
+
+  <div class="hidden md:block overflow-x-auto rounded-3xl border border-white/10">
+
+    <table class="w-full text-sm">
+
+      <thead class="bg-white/5 backdrop-blur-xl">
+
+        <tr>
+          <th class="p-5 text-left">Feature</th>
+          <th>Neovim</th>
+          <th>VS Code</th>
+          <th>Antigravity</th>
+          <th>JetBrains</th>
+          <th>OS</th>
+        </tr>
+
+      </thead>
+
+      <tbody class="text-center">
+
+        <tr class="border-t border-white/10">
+          <td class="p-5 text-left">Background Uploader</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>All</td>
+        </tr>
+
+        <tr class="border-t border-white/10">
+          <td class="p-5 text-left">Dashboard</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>All</td>
+        </tr>
+
+        <tr class="border-t border-white/10">
+          <td class="p-5 text-left">Stats Reporter</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>All</td>
+        </tr>
+
+        <tr class="border-t border-white/10">
+          <td class="p-5 text-left">Privacy Controls</td>
+          <td>✓</td>
+          <td>Planned</td>
+          <td>Planned</td>
+          <td>Planned</td>
+          <td>All</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- MOBILE CARDS -->
+
+  <div class="grid gap-4 md:hidden">
+
+    <div class="compat-card">
+      <h3>Background Uploader</h3>
+
+      <div class="compat-grid">
+        <span>Neovim ✓</span>
+        <span>VS Code ✓</span>
+        <span>Antigravity ✓</span>
+        <span>JetBrains ✓</span>
+      </div>
+
+      <p>OS: All</p>
+    </div>
+
+    <div class="compat-card">
+      <h3>Dashboard</h3>
+
+      <div class="compat-grid">
+        <span>Neovim ✓</span>
+        <span>VS Code ✓</span>
+        <span>Antigravity ✓</span>
+        <span>JetBrains ✓</span>
+      </div>
+
+      <p>OS: All</p>
+    </div>
+
+    <div class="compat-card">
+      <h3>Stats Reporter</h3>
+
+      <div class="compat-grid">
+        <span>Neovim ✓</span>
+        <span>VS Code ✓</span>
+        <span>Antigravity ✓</span>
+        <span>JetBrains ✓</span>
+      </div>
+
+      <p>OS: All</p>
+    </div>
+
+    <div class="compat-card">
+      <h3>Privacy Controls</h3>
+
+      <div class="compat-grid">
+        <span>Neovim ✓</span>
+        <span>VS Code Planned</span>
+        <span>Antigravity Planned</span>
+        <span>JetBrains Planned</span>
+      </div>
+
+      <p>OS: All</p>
+    </div>
+
+  </div>
+
+  <p class="text-center text-sm text-gray-500 mt-6">
+    Privacy controls for VS Code and Antigravity are under development.
+  </p>
+
+</section>
 
     <!-- COMMUNITY -->
-    <section class="text-center py-20">
+    <section class="text-center py-20 scroll-reveal">
       <h2 class="text-xl font-bold mb-6">Built by the Community</h2>
 
       <a
@@ -1050,7 +1481,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="text-center py-20">
+    <section class="text-center py-20 scroll-reveal">
       <h2 class="text-2xl font-bold mb-6">Ready to take back your time?</h2>
       <button
         class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded-lg"
@@ -1092,5 +1523,110 @@
     </script>
 
     <script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.7.1/dist/bundle/asciinema-player.min.js"></script>
+
+<script>
+  AsciinemaPlayer.create(
+    "demo.cast",
+    document.getElementById("demo"),
+    {
+      autoplay: true,
+      loop: true,
+      controls: false,
+      speed: 1,
+      idleTimeLimit: 1,
+      theme: "dracula",
+      fit: "width",
+      terminalFontSize: "15px",
+      terminalFontFamily: "JetBrains Mono"
+    }
+  );
+</script>
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+
+<script>
+  MarketplaceWidget.setupMarketplaceWidget(
+    "card",
+    31861,
+    "#jetbrains-widget"
+  );
+</script>
+
+
+<script>
+async function fetchGitHubStats() {
+
+  const repo = "Rtarun3606k/TakaTime";
+
+  try {
+
+    // REPO DATA
+
+    const repoRes = await fetch(
+      `https://api.github.com/repos/${repo}`
+    );
+
+    const repoData = await repoRes.json();
+
+    // RELEASE DOWNLOADS
+
+    const releaseRes = await fetch(
+      `https://api.github.com/repos/${repo}/releases`
+    );
+
+    const releases = await releaseRes.json();
+
+    let totalDownloads = 0;
+
+    releases.forEach(release => {
+      release.assets.forEach(asset => {
+        totalDownloads += asset.download_count;
+      });
+    });
+
+    animateCounter(
+      "stars-count",
+      repoData.stargazers_count
+    );
+
+    animateCounter(
+      "downloads-count",
+      totalDownloads
+    );
+
+  } catch (err) {
+
+    console.error(err);
+
+  }
+}
+
+function animateCounter(id, target) {
+
+  const element = document.getElementById(id);
+
+  let current = 0;
+
+  const increment = target / 80;
+
+  const timer = setInterval(() => {
+
+    current += increment;
+
+    if (current >= target) {
+
+      current = target;
+
+      clearInterval(timer);
+    }
+
+    element.innerText =
+      Math.floor(current).toLocaleString() + "+";
+
+  }, 20);
+}
+
+fetchGitHubStats();
+</script>
   </body>
 </html>
