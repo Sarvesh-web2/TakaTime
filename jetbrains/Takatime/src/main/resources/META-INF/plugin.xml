@@ -1,0 +1,21 @@
+<idea-plugin>
+    <id>com.takatime.jetbrains</id>
+    <name>TakaTime</name>
+    <vendor url="https://github.com/Rtarun3606k">Tarun</vendor>
+    <description>Open-source coding telemetry engine and time tracker.</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <statusBarWidgetFactory id="TakaTimeWidget"
+                                implementation="com.takatime.jetbrains.TakaTimeWidgetFactory"/>
+
+        <editorFactoryListener implementation="com.takatime.jetbrains.TakaTimeEditorFactoryListener"/>
+    </extensions>
+
+    <applicationListeners>
+        <listener class="com.takatime.jetbrains.TakaTimeSaveListener"
+                  topic="com.intellij.openapi.fileEditor.FileDocumentManagerListener"/>
+    </applicationListeners>
+</idea-plugin>

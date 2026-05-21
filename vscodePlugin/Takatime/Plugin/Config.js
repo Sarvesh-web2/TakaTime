@@ -28,16 +28,25 @@ function getConfig() {
     const rawConfig = fs.readFileSync(configPath, "utf8");
     let config = JSON.parse(rawConfig);
 
-    // AUTO-UPDATE LOGIC
-    // If the file version (e.g., v2.0.3) doesn't match Code version (v2.0.4)
-    if (config.VERSION !== CURRENT_VERSION) {
+    // --- THE FIX: Semantic Version Checking ---
+    const installedVersion = config.VERSION || "v0.0.0";
+
+    // Convert "v2.2.4" into the number 224 using Regex to strip letters/dots
+    const installedNum =
+      parseInt(installedVersion.replace(/v|\./g, ""), 10) || 0;
+    const currentNum = parseInt(CURRENT_VERSION.replace(/v|\./g, ""), 10) || 0;
+    console.log(
+      `TakaTime: Installed version ${installedVersion} (${installedNum}), Current version ${CURRENT_VERSION} (${currentNum})`,
+    );
+
+    // Only trigger the upgrade if the installed version is older (less than) the current version
+    if (installedNum < currentNum) {
       console.log(
-        `TakaTime: Upgrading config from ${config.VERSION} to ${CURRENT_VERSION}`,
+        `TakaTime: Upgrading config from ${installedVersion} to ${CURRENT_VERSION}`,
       );
 
-      config.VERSION = CURRENT_VERSION; // Update the object
+      config.VERSION = CURRENT_VERSION;
 
-      // Save it back to the file immediately
       fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
 
       vscode.window.showInformationMessage(
@@ -46,7 +55,6 @@ function getConfig() {
     }
 
     if (!config.MONGO_URI) {
-      // ... warning logic ...
       return null;
     }
 

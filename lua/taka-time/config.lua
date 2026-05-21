@@ -9,8 +9,8 @@ M.defaults = {
 	debounce_seconds = 2,
 
 	debug = false,
-
 	ignore_repos = {},
+
 }
 
 M.options = {}
