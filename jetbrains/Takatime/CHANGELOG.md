@@ -1,3 +1,10 @@
+## [2.2.5] - 2026-05-21
+
+### Fixed
+
+- Fixed JetBrains document listener lifecycle handling to prevent invalid listener removal exceptions when closing editors or split tabs.
+
+
 ## [2.2.4] - 2026-05-20
 
 ### Added

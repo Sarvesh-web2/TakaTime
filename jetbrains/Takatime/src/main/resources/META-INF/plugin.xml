@@ -1,8 +1,21 @@
 <idea-plugin>
     <id>com.takatime.jetbrains</id>
     <name>TakaTime</name>
-    <vendor url="https://github.com/Rtarun3606k">Tarun</vendor>
-    <description>Open-source coding telemetry engine and time tracker.</description>
+    <vendor url="https://github.com/Rtarun3606k">Tarun Nayaka R</vendor>
+    <description><![CDATA[
+      <p><b>TakaTime</b> is an open-source, privacy-first <b>time tracker and coding telemetry engine</b> built for developers. Track your coding activity, project time, and language usage directly inside your IDE without sending your personal data to third-party servers.</p>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><b>100% Privacy & BYOD:</b> Bring your own database. All telemetry is securely routed to your personal MongoDB instance.</li>
+        <li><b>Integrated TUI Dashboard:</b> View your developer productivity analytics and coding stats natively inside the IDE's built-in terminal.</li>
+        <li><b>Smart Heartbeat Detection:</b> Accurately calculates true coding duration and automatically pauses when you are away from the keyboard.</li>
+        <li><b>Cross-Platform Parity:</b> Seamlessly syncs your coding metrics across JetBrains IDEs, VS Code, and Neovim.</li>
+        <li><b>The Open-Source Alternative:</b> A lightweight, Go-based alternative to WakaTime, designed for maximum performance and zero UI freezing.</li>
+      </ul>
+
+      <p>Take back control of your developer analytics. Configure your database, install the plugin, and start measuring your coding productivity today.</p>
+    ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.plugins.terminal</depends>
