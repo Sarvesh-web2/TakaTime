@@ -36,7 +36,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Dark theme stat card](./public/themes/dark-web.png) | ![Dark theme TUI](./public/themes/dark-tui.png) |
+| ![Dark theme stat card](./public/dark-web.png) | ![Dark theme TUI](./public/dark-tui.png) |
 
 ---
 
@@ -46,7 +46,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Light theme stat card](./public/themes/light-web.png) | ![Light theme TUI](./public/themes/light-tui.png) |
+| ![Light theme stat card](./public/light-web.png) | ![Light theme TUI](./public/light-tui.png) |
 
 ---
 
@@ -56,7 +56,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Dracula theme stat card](./public/themes/dracula-web.png) | ![Dracula theme TUI](./public/themes/dracula-tui.png) |
+| ![Dracula theme stat card](./public/dracula-web.png) | ![Dracula theme TUI](./public/dracula-tui.png) |
 
 ---
 
@@ -66,7 +66,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Monokai theme stat card](./public/themes/monokai-web.png) | ![Monokai theme TUI](./public/themes/monokai-tui.png) |
+| ![Monokai theme stat card](./public/monokai-web.png) | ![Monokai theme TUI](./public/monokai-tui.png) |
 
 ---
 
@@ -76,7 +76,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Cyberpunk theme stat card](./public/themes/cyberpunk-web.png) | ![Cyberpunk theme TUI](./public/themes/cyberpunk-tui.png) |
+| ![Cyberpunk theme stat card](./public/cyberpunk-web.png) | ![Cyberpunk theme TUI](./public/cyberpunk-tui.png) |
 
 ---
 
@@ -86,7 +86,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Tokyo Night theme stat card](./public/themes/tokyonight-web.png) | ![Tokyo Night theme TUI](./public/themes/tokyonight-tui.png) |
+| ![Tokyo Night theme stat card](./public/tokyonight-web.png) | ![Tokyo Night theme TUI](./public/tokyonight-tui.png) |
 
 ---
 
@@ -96,7 +96,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Catppuccin theme stat card](./public/themes/catppuccin-web.png) | ![Catppuccin theme TUI](./public/themes/catppuccin-tui.png) |
+| ![Catppuccin theme stat card](./public/catppuccin-web.png) | ![Catppuccin theme TUI](./public/catppuccin-tui.png) |
 
 ---
 
@@ -106,7 +106,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Synthwave theme stat card](./public/themes/synthwave-web.png) | ![Synthwave theme TUI](./public/themes/synthwave-tui.png) |
+| ![Synthwave theme stat card](./public/synthwave-web.png) | ![Synthwave theme TUI](./public/synthwave-tui.png) |
 
 ---
 
@@ -121,7 +121,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Sunset theme stat card](./public/themes/sunset-web.png) | ![Sunset theme TUI](./public/themes/sunset-tui.png) |
+| ![Sunset theme stat card](./public/sunset-web.png) | ![Sunset theme TUI](./public/sunset-tui.png) |
 
 ---
 
@@ -136,7 +136,7 @@ A visual reference for all built-in TakaTime color themes. Use the theme name/ID
 
 | Stat Card Preview | Terminal Dashboard |
 |:-:|:-:|
-| ![Midnight Purple theme stat card](./public/themes/midnightpurple-web.png) | ![Midnight Purple theme TUI](./public/themes/midnightpurple-tui.png) |
+| ![Midnight Purple theme stat card](./public/midnightpurple-web.png) | ![Midnight Purple theme TUI](./public/midnightpurple-tui.png) |
 
 ---
 
