@@ -1222,3 +1222,28 @@ table tbody tr:hover td {
 
   font-size: 0.9rem;
 }
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #161b22;
+  border: 1px solid rgba(57, 255, 20, 0.4);
+  color: #c9d1d9;
+  padding: 0.85rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+              0 0 20px rgba(57, 255, 20, 0.1);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
