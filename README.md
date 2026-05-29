@@ -113,7 +113,8 @@ TakaTime includes a fully interactive, offline-first terminal dashboard directly
 - **GitHub Profile Integration:** Automatically generate high-resolution statistical charts for your GitHub Profile README via GitHub Actions.
 
 ---
-## 🎨 Themes
+
+##  Themes
 
 TakaTime includes 18 built-in color themes. Browse the full visual gallery — including Terminal Dashboard and Web Generator previews for each theme — in **[THEMES.md](./THEMES.md)**.
 
